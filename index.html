@@ -34,66 +34,46 @@
     line-height: 1.7;
   }
 
-  /* ── HERO ── */
-  .hero {
+  /* ── TOPBAR ── */
+  .topbar {
     background: #0d2b1f;
-    color: white;
-    padding: 80px 40px 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(29,158,117,0.3);
   }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 30% 60%, rgba(29,158,117,0.25) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(29,158,117,0.15) 0%, transparent 50%);
-  }
-  .hero-inner { position: relative; max-width: 780px; margin: 0 auto; }
-  .hero-tag {
-    display: inline-block;
-    background: rgba(29,158,117,0.25);
-    border: 1px solid rgba(29,158,117,0.5);
-    color: #9FE1CB;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 20px;
-    margin-bottom: 24px;
-    font-weight: 500;
-  }
-  .hero h1 {
+  .topbar-logo {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 6vw, 64px);
+    font-size: 16px;
     font-weight: 700;
-    line-height: 1.12;
-    margin-bottom: 20px;
     color: white;
+    letter-spacing: -0.01em;
   }
-  .hero h1 span { color: #5DCAA5; }
-  .hero p {
-    font-size: 18px;
-    color: rgba(255,255,255,0.72);
-    max-width: 580px;
-    margin: 0 auto 36px;
-    font-weight: 300;
+  .topbar-logo span { color: #5DCAA5; }
+  .topbar-pills { display: flex; gap: 6px; align-items: center; }
+  .topbar-pill {
+    background: rgba(29,158,117,0.2);
+    border: 1px solid rgba(29,158,117,0.35);
+    color: #9FE1CB;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
   }
-  .hero-pills { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .pill {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.18);
-    color: rgba(255,255,255,0.85);
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: 400;
+  @media(max-width: 500px) {
+    .topbar-pill { display: none; }
+    .topbar-pill.show-mobile { display: inline-block; }
   }
 
   /* ── LAYOUT ── */
   .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-  section { padding: 72px 0; }
+  section { padding: 56px 0; }
   .section-label {
     font-size: 11px;
     letter-spacing: 0.14em;
@@ -116,8 +96,43 @@
     margin-bottom: 48px;
   }
 
+  /* ── SECTION OVERRIDE ── */
+  .map-hero { padding: 0 !important; }
+
   /* ── MAP SVG SECTION ── */
-  .map-section { background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .map-section { background: white; border-bottom: 1px solid var(--border); }
+  .map-hero { padding: 0 !important; }
+  .map-hero .container { padding: 0; max-width: 100%; }
+  .map-intro {
+    background: linear-gradient(135deg, #0d2b1f 0%, #143d28 100%);
+    padding: 20px 24px 16px;
+    text-align: center;
+  }
+  .map-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 4vw, 28px);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+  .map-main-title span { color: #5DCAA5; }
+  .map-main-sub {
+    font-size: clamp(11px, 2.5vw, 13px);
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+  }
+  .map-hero .map-wrap {
+    border-radius: 0;
+    border: none;
+    padding: 0;
+    background: white;
+  }
+  .map-hero .map-wrap svg {
+    max-width: 100%;
+    display: block;
+    width: 100%;
+  }
   .map-wrap {
     background: var(--bg);
     border: 1px solid var(--border);
@@ -273,6 +288,11 @@
     padding-bottom: 1px;
   }
   .apt-link:hover { color: white; border-color: white; }
+  @media(max-width: 768px) {
+    .apt-link { font-size: 14px; padding: 8px 0; display: inline-block; }
+    .tab-btn { min-height: 40px; }
+    .area-card:hover { transform: none; }
+  }
 
   /* ── SAFETY NOTICE ── */
   .safety-section { background: white; border-top: 1px solid var(--border); }
@@ -348,37 +368,63 @@
   .hero-inner > *:nth-child(3) { animation-delay: 0.2s; }
   .hero-inner > *:nth-child(4) { animation-delay: 0.3s; }
 
-  @media(max-width: 700px) {
-    .container { padding: 0 20px; }
-    section { padding: 48px 0; }
-    .hero { padding: 60px 20px 48px; }
-    .areas-grid { grid-template-columns: 1fr; }
+  /* ── MOBILE / RESPONSIVE ── */
+  @media(max-width: 768px) {
+    .container { padding: 0 16px; }
+    section { padding: 36px 0; }
+    .section-title { font-size: 24px; }
+    .section-sub { font-size: 14px; margin-bottom: 24px; }
+    .areas-grid { grid-template-columns: 1fr; gap: 14px; }
+    .apt-group.active { grid-template-columns: 1fr; gap: 12px; }
+    .safety-grid { grid-template-columns: 1fr; gap: 12px; }
+    .map-wrap { padding: 8px; border-radius: 10px; }
+    .apts-tabs { gap: 6px; }
+    .tab-btn { padding: 7px 13px; font-size: 13px; }
+    .area-card-header { flex-direction: column; gap: 6px; }
+    .area-badge { align-self: flex-start; }
+    .stat-row { gap: 5px; }
+    .stat { font-size: 12px; padding: 4px 8px; }
+    .transport-table th, .transport-table td { padding: 10px 12px; font-size: 13px; }
+    .transport-table th:last-child, .transport-table td:last-child { display: none; }
+  }
+  @media(max-width: 480px) {
+    .container { padding: 0 12px; }
+    section { padding: 28px 0; }
+    .section-title { font-size: 20px; }
+    .feature-list li { font-size: 13px; }
+    .area-desc { font-size: 13px; }
+    .apt-card { padding: 15px; }
+    .apt-title { font-size: 15px; }
+    .apt-price { font-size: 18px; }
+    .transport-table th:nth-child(3), .transport-table td:nth-child(3) { display: none; }
+    .topbar-logo { font-size: 14px; }
+  }
+  .featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  @media(max-width: 680px) {
+    .featured-grid { grid-template-columns: 1fr !important; gap: 16px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ── HERO ── -->
-<header class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">Newcastle Upon Tyne · Relocation Guide 2026</div>
-    <h1>Your Safe Home Near<br><span>Northumbria University</span></h1>
-    <p>A complete guide to the safest neighbourhoods, best transport links, local amenities, and top apartments available to rent right now.</p>
-    <div class="hero-pills">
-      <span class="pill">🏫 Close to Northumbria University</span>
-      <span class="pill">🔒 Secure buildings</span>
-      <span class="pill">🚇 Metro & Bus links</span>
-      <span class="pill">🛍 Shops & amenities</span>
-    </div>
+<!-- ── TOPBAR ── -->
+<header class="topbar">
+  <div class="topbar-logo">Newcastle <span>· Northumbria Guide</span></div>
+  <div class="topbar-pills">
+    <span class="topbar-pill show-mobile">🔒 Safe Areas</span>
+    <span class="topbar-pill">🏫 Near Northumbria</span>
+    <span class="topbar-pill">🚇 Transport</span>
+    <span class="topbar-pill">🛍 Amenities</span>
   </div>
 </header>
 
-<!-- ── MAP ── -->
-<section class="map-section">
+<!-- ── MAP HERO ── -->
+<section class="map-section map-hero">
   <div class="container">
-    <div class="section-label">Area Overview</div>
-    <h2 class="section-title">Safe Neighbourhoods Map</h2>
-    <p class="section-sub">The green areas below are safe, well-connected, and all within 20 minutes' walk of Northumbria University's City Campus.</p>
+    <div class="map-intro">
+      <h2 class="map-main-title">Safe Areas Near <span>Northumbria University</span></h2>
+      <p class="map-main-sub">Green = safe &amp; walkable to campus · Red = avoid · Yellow M = Metro · 2026 crime data</p>
+    </div>
     <div class="map-wrap">
       <svg viewBox="0 0 680 540" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -670,12 +716,186 @@
   </div>
 </section>
 
+<!-- ── FEATURED BUILDINGS ── -->
+<section style="background:#fff;border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label">Best Apartment Buildings</div>
+    <h2 class="section-title">Top 1-Bedroom Builds in Safe Areas</h2>
+    <p class="section-sub">These are the best-rated, purpose-built residential buildings in the safe green neighbourhoods — perfect for you and your mum sharing a 1-bedroom apartment. Each listing includes the full address and a map link.</p>
+
+    <div class="featured-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px">
+
+      <!-- Urban Study Jesmond -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+        <div style="background:linear-gradient(135deg,#0d2b1f,#1D9E75 200%);padding:22px 24px 18px">
+          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#9FE1CB;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">Sandyford / Jesmond Border</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">Urban Study Jesmond</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Grantham Road, Shieldfield, NE2 1QX</div>
+        </div>
+        <div style="padding:20px 24px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">All Bills Included</span>
+            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">24/7 CCTV</span>
+            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Couples Welcome</span>
+            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Gym & Cinema</span>
+          </div>
+          <div style="font-size:26px;font-weight:700;color:var(--green);margin-bottom:4px">~£820–£890 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Bills included (exc. Council Tax)</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">High-spec 1-bed studio apartments. Just 5 minutes' walk to Northumbria University. Secure carded entry, 24/7 CCTV, daytime concierge, on-site gym, cinema room, private dining room and games area. Bus stop directly outside. Suitable for couples. All utilities and broadband included.</div>
+          <div style="background:#f0faf5;border:1px solid #b6e8d0;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
+            <div style="font-weight:500;color:#0F6E56;margin-bottom:4px">📍 Location & Transport</div>
+            <div style="color:#555">Grantham Road, NE2 1QX · 5 min walk to Northumbria · Bus stop at door · Manors Metro 12 min walk · City centre 15 min walk</div>
+          </div>
+          <a href="https://www.rightmove.co.uk/properties/163283486" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--green);text-decoration:none;border-bottom:1px solid rgba(29,158,117,0.4);padding-bottom:1px;margin-right:14px">View on Rightmove →</a>
+          <a href="https://www.google.com/maps/search/Grantham+Road+Shieldfield+Newcastle+NE2+1QX" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
+        </div>
+      </div>
+
+      <!-- Jesmond Exchange -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+        <div style="background:linear-gradient(135deg,#1a1a2e,#534AB7 200%);padding:22px 24px 18px">
+          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#CECBF6;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">South Jesmond</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">Jesmond Exchange</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Manor Court, Jesmond, NE2 3AE</div>
+        </div>
+        <div style="padding:20px 24px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+            <span style="background:#EEEDFE;color:#3C3489;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Bills Included</span>
+            <span style="background:#EEEDFE;color:#3C3489;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Loft-Style</span>
+            <span style="background:#EEEDFE;color:#3C3489;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Award-Winning</span>
+            <span style="background:#EEEDFE;color:#3C3489;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Industrial Chic</span>
+          </div>
+          <div style="font-size:26px;font-weight:700;color:#534AB7;margin-bottom:4px">~£1,168–£1,345 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">All bills included (exc. Council Tax & TV licence)</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">Award-winning Brooklyn-style loft 1-bedroom apartments in a converted Art Deco telephone exchange. Spiral staircases, exposed beams, frameless glass mezzanines. Voted Residential Project of the Year 2019. Located in the heart of Jesmond, minutes from Osborne Road's bars and restaurants.</div>
+          <div style="background:#f4f2fe;border:1px solid #d0cdf7;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
+            <div style="font-weight:500;color:#3C3489;margin-bottom:4px">📍 Location & Transport</div>
+            <div style="color:#555">Manor Court, NE2 3AE · ~18 min walk to Northumbria · Haymarket Metro 10 min walk · Osborne Road cafés & shops 2 min · Jesmond Dene 5 min</div>
+          </div>
+          <a href="https://www.exchangeresidential.com/properties/jesmond-exchange/" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:#534AB7;text-decoration:none;border-bottom:1px solid rgba(83,74,183,0.4);padding-bottom:1px;margin-right:14px">Official Website →</a>
+          <a href="https://www.google.com/maps/search/Jesmond+Exchange+Manor+Court+Newcastle+NE2+3AE" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
+        </div>
+      </div>
+
+      <!-- Portland Apartments Sandyford -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+        <div style="background:linear-gradient(135deg,#0a3d2b,#0F6E56 200%);padding:22px 24px 18px">
+          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#9FE1CB;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">Sandyford — Closest to Uni</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">Portland Apartments</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Portland Terrace, Sandyford, NE2 1QX</div>
+        </div>
+        <div style="padding:20px 24px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">New Development</span>
+            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">En-Suite</span>
+            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Fully Furnished</span>
+            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Secure Entry</span>
+          </div>
+          <div style="font-size:26px;font-weight:700;color:var(--green);margin-bottom:4px">~£895–£1,100 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">1-bed en-suite apartments, bills negotiable</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">Brand new, high-specification 1-bedroom en-suite apartments in quiet Sandyford. Fully furnished, modern interiors, secure entry system. This is the closest safe development to Northumbria's City Campus — just minutes on foot. Ideal for a parent/student duo.</div>
+          <div style="background:#f0faf5;border:1px solid #b6e8d0;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
+            <div style="font-weight:500;color:#0F6E56;margin-bottom:4px">📍 Location & Transport</div>
+            <div style="color:#555">Portland Terrace, NE2 1QX · ~8 min walk to Northumbria · Haymarket Metro 6 min walk · Sandyford Rd shops 2 min · City centre 12 min walk</div>
+          </div>
+          <a href="https://www.rightmove.co.uk/property-to-rent/Sandyford.html" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--green);text-decoration:none;border-bottom:1px solid rgba(29,158,117,0.4);padding-bottom:1px;margin-right:14px">Search Rightmove →</a>
+          <a href="https://www.google.com/maps/search/Portland+Terrace+Sandyford+Newcastle+NE2" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
+        </div>
+      </div>
+
+      <!-- The Forge by Grainger -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+        <div style="background:linear-gradient(135deg,#0d2b1f,#185FA5 200%);padding:22px 24px 18px">
+          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#B5D4F4;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">City Centre — 10 min walk</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">The Forge by Grainger</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Forth Banks, Newcastle, NE1 3AA</div>
+        </div>
+        <div style="padding:20px 24px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">24hr Staffed Lobby</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">4.7★ Rated</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Gym & Co-Work</span>
+            <span style="background:#E6F1FB;color:#0C447C;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Non-Students OK</span>
+          </div>
+          <div style="font-size:26px;font-weight:700;color:var(--blue);margin-bottom:4px">from £1,100 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">1-bed apartments, flexible lease options</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">The highest-rated residential building near Northumbria (4.7★, 175+ reviews). Purpose-built for professionals and non-students — perfect for a mother and adult child. 24-hour staffed lobby, on-site gym, co-working space and parcel collection. Residents consistently praise the safety and community feel.</div>
+          <div style="background:#eef5fd;border:1px solid #b5d4f4;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
+            <div style="font-weight:500;color:#0C447C;margin-bottom:4px">📍 Location & Transport</div>
+            <div style="color:#555">Forth Banks, NE1 3AA · 10 min walk to Northumbria · St James Metro 5 min · Central Station 8 min · Monument Metro 10 min · Eldon Square shops nearby</div>
+          </div>
+          <a href="https://the-forge-newcastle.co.uk" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px;margin-right:14px">Official Website →</a>
+          <a href="https://www.google.com/maps/search/The+Forge+Forth+Banks+Newcastle+NE1+3AA" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
+        </div>
+      </div>
+
+      <!-- Akenside Terrace Jesmond -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+        <div style="background:linear-gradient(135deg,#1f2a0a,#639922 200%);padding:22px 24px 18px">
+          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#C0DD97;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">Jesmond</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">1-Bed on Akenside Terrace</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Akenside Terrace, Jesmond, NE2</div>
+        </div>
+        <div style="padding:20px 24px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+            <span style="background:#EAF3DE;color:#27500A;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">High Spec Interior</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Top Floor</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Jesmond Village</span>
+            <span style="background:#EAF3DE;color:#27500A;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Spacious</span>
+          </div>
+          <div style="font-size:26px;font-weight:700;color:#3B6D11;margin-bottom:4px">~£1,200 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Large 1-bed, interior designer finished</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">Large top-floor 1-bedroom apartment on sought-after Akenside Terrace in the heart of Jesmond. Interior designed to a high specification, bright and spacious throughout. Located a stone's throw from Jesmond's café culture and green spaces. Very quiet, safe street.</div>
+          <div style="background:#f2f9e8;border:1px solid #c0dd97;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
+            <div style="font-weight:500;color:#27500A;margin-bottom:4px">📍 Location & Transport</div>
+            <div style="color:#555">Akenside Terrace, NE2 · ~18 min walk to Northumbria · Haymarket Metro 8 min walk · Acorn Road shops 3 min · Jesmond Dene park 5 min</div>
+          </div>
+          <a href="https://www.rightmove.co.uk/property-to-rent/Jesmond/1-bed-flats.html" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:#3B6D11;text-decoration:none;border-bottom:1px solid rgba(59,109,17,0.4);padding-bottom:1px;margin-right:14px">Search Rightmove →</a>
+          <a href="https://www.google.com/maps/search/Akenside+Terrace+Jesmond+Newcastle+NE2" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
+        </div>
+      </div>
+
+      <!-- Hutton Terrace 1-Bed Sandyford -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+        <div style="background:linear-gradient(135deg,#2b1a0d,#BA7517 200%);padding:22px 24px 18px">
+          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#FAC775;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">Sandyford — Garden</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">1-Bed with Garden, Hutton Terrace</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Hutton Terrace, Sandyford, NE2</div>
+        </div>
+        <div style="padding:20px 24px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+            <span style="background:#FAEEDA;color:#633806;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Private Garden</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Gated Parking</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Modern Interiors</span>
+            <span style="background:#FAEEDA;color:#633806;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Quiet Street</span>
+          </div>
+          <div style="font-size:26px;font-weight:700;color:var(--amber);margin-bottom:4px">~£895 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">1-bed with private garden, secure gated parking</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">Modern 1-bedroom apartment on the popular Hutton Terrace in Sandyford — one of the most desirable streets in the area. Features a private garden and secure gated parking, rare for this price range. Very close to Northumbria University and Jesmond Dene. Ideal for a relaxed, quiet lifestyle.</div>
+          <div style="background:#fdf5e5;border:1px solid #f5c27a;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
+            <div style="font-weight:500;color:#633806;margin-bottom:4px">📍 Location & Transport</div>
+            <div style="color:#555">Hutton Terrace, NE2 · ~8 min walk to Northumbria · Haymarket Metro 7 min walk · Jesmond Dene 5 min · City centre 15 min walk</div>
+          </div>
+          <a href="https://www.onthemarket.com/to-rent/flats-apartments/sandyford/" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(186,117,23,0.4);padding-bottom:1px;margin-right:14px">Search OnTheMarket →</a>
+          <a href="https://www.google.com/maps/search/Hutton+Terrace+Sandyford+Newcastle+NE2" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Note -->
+    <div style="margin-top:32px;background:#f0faf5;border:1px solid #b6e8d0;border-radius:12px;padding:20px 24px;font-size:14px;color:#0F6E56;line-height:1.7">
+      <strong>💡 Tip for you and your mum:</strong> A 1-bedroom apartment works well for two people — one person takes the bedroom, one converts the living room sofa bed. Many of these buildings also offer dual-occupancy or couple pricing. Always call ahead to confirm they accept two adult non-student occupants and ask about flexible lease lengths (4–8 months). <strong>Urban Study Jesmond and The Forge by Grainger</strong> are both explicitly listed as suitable for couples and professionals.
+    </div>
+  </div>
+</section>
+
 <!-- ── APARTMENTS ── -->
 <section class="apts-section">
   <div class="container">
-    <div class="section-label">Current Listings</div>
-    <h2 class="section-title" style="color:white">Top Apartments to Rent</h2>
-    <p class="section-sub">Real listings sourced from Rightmove, Zoopla and PrimeLocation in the safe green neighbourhoods. Prices and availability correct as of early 2026 — check listing sites for the latest.</p>
+    <div class="section-label">1-Bedroom Listings by Area</div>
+    <h2 class="section-title" style="color:white">Browse 1-Bed Apartments</h2>
+    <p class="section-sub">Filtered to 1-bedroom apartments in the safe green areas. Prices sourced from Rightmove, Zoopla and PrimeLocation — correct as of April 2026.</p>
     <div class="apts-tabs">
       <button class="tab-btn active" onclick="showTab('sandyford')">Sandyford</button>
       <button class="tab-btn" onclick="showTab('jesmond')">Jesmond</button>
@@ -687,39 +907,39 @@
     <div class="apt-group active" id="tab-sandyford">
       <div class="apt-card">
         <div class="apt-area-tag">Sandyford</div>
-        <div class="apt-title">2-Bed Duplex on Hutton Terrace</div>
+        <div class="apt-title">1-Bed Studio, Urban Study Jesmond</div>
+        <div class="apt-addr">Grantham Road, Shieldfield, NE2 1QX</div>
+        <div class="apt-price">~£820–£890 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Bills Included</span><span class="apt-tag">Gym</span><span class="apt-tag">Couples OK</span></div>
+        <div class="apt-features">All-inclusive 1-bed studio. 5 min walk to Northumbria. 24/7 CCTV, concierge, on-site gym & cinema. Bus stop directly outside. Broadband, water & electricity all included.</div>
+        <a class="apt-link" href="https://www.rightmove.co.uk/properties/163283486" target="_blank">View on Rightmove →</a>
+      </div>
+      <div class="apt-card">
+        <div class="apt-area-tag">Sandyford</div>
+        <div class="apt-title">1-Bed En-Suite, Portland Apartments</div>
+        <div class="apt-addr">Portland Terrace, Sandyford, NE2 1QX</div>
+        <div class="apt-price">~£895–£1,100 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">New Build</span><span class="apt-tag">Fully Furnished</span><span class="apt-tag">En-Suite</span></div>
+        <div class="apt-features">Brand new high-spec 1-bed en-suite in quiet Sandyford. Closest safe development to Northumbria campus — just 8 minutes on foot. Secure entry. Modern fittings throughout.</div>
+        <a class="apt-link" href="https://www.primelocation.com/to-rent/property/tyne-and-wear/sandyford/sandyford-road/" target="_blank">View on PrimeLocation →</a>
+      </div>
+      <div class="apt-card">
+        <div class="apt-area-tag">Sandyford</div>
+        <div class="apt-title">1-Bed with Garden, Hutton Terrace</div>
         <div class="apt-addr">Hutton Terrace, Sandyford, NE2</div>
-        <div class="apt-price">£1,430 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">2 Bath</span><span class="apt-tag">Furnished</span><span class="apt-tag">Modern</span></div>
-        <div class="apt-features">Stunning duplex apartment with modern interiors, two double bedrooms, two bathrooms. Walking distance to Jesmond Dene, cafés and transport links. Private gated parking.</div>
+        <div class="apt-price">~£895 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Private Garden</span><span class="apt-tag">Gated Parking</span><span class="apt-tag">Quiet</span></div>
+        <div class="apt-features">Modern 1-bed on one of Sandyford's most desirable streets. Private garden and secure gated parking. Perfect for two adults wanting outdoor space. 8 min walk to Northumbria.</div>
         <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Sandyford.html" target="_blank">Search on Rightmove →</a>
       </div>
       <div class="apt-card">
         <div class="apt-area-tag">Sandyford</div>
-        <div class="apt-title">2-Bed Ground Floor Flat, Dinsdale Road</div>
-        <div class="apt-addr">Dinsdale Road, Sandyford, NE2</div>
-        <div class="apt-price">£1,095 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">1 Bath</span><span class="apt-tag">625 sq ft</span><span class="apt-tag">Available Now</span></div>
-        <div class="apt-features">Well-presented two-bedroom ground floor flat. Close to local amenities and within easy reach of the City Centre and both universities. Bills package available separately.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Sandyford.html" target="_blank">Search on Rightmove →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Sandyford</div>
-        <div class="apt-title">Modern 2-Bed on Helmsley Road</div>
-        <div class="apt-addr">Helmsley Road, Sandyford, NE2</div>
-        <div class="apt-price">£1,350 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">1 Bath</span><span class="apt-tag">Furnished</span><span class="apt-tag">679 sq ft</span></div>
-        <div class="apt-features">Spacious two-bedroom ground floor flat recently furnished to a high standard. Quiet residential street, excellent transport links, short walk to Northumbria University.</div>
-        <a class="apt-link" href="https://www.zoopla.co.uk/to-rent/flats/tyne-and-wear/sandyford/" target="_blank">Search on Zoopla →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Sandyford</div>
-        <div class="apt-title">Portland Apartments — 2-Bed En-Suite</div>
-        <div class="apt-addr">Portland Terrace, Sandyford, NE2</div>
-        <div class="apt-price">£1,473 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">2 Bath En-Suite</span><span class="apt-tag">Fully Furnished</span><span class="apt-tag">New Build</span></div>
-        <div class="apt-features">Exclusive new development — 2-bedroom en-suite apartment fully furnished to a high spec. Located on a quiet street minutes from Northumbria University and Haymarket Metro.</div>
-        <a class="apt-link" href="https://www.primelocation.com/to-rent/property/tyne-and-wear/sandyford/sandyford-road/" target="_blank">Search on PrimeLocation →</a>
+        <div class="apt-title">Newly Refurbished 1-Bed Apartment</div>
+        <div class="apt-addr">Sandyford Road / Lillico House, NE2</div>
+        <div class="apt-price">~£650–£800 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Available Now</span><span class="apt-tag">Good Transport</span><span class="apt-tag">Refurbished</span></div>
+        <div class="apt-features">Newly refurbished 1-bed in Sandyford. Excellent transport links, walking distance to both Newcastle and Northumbria campuses and the city centre. Best value option in the area.</div>
+        <a class="apt-link" href="https://www.onthemarket.com/to-rent/flats-apartments/sandyford/" target="_blank">Search on OnTheMarket →</a>
       </div>
     </div>
 
@@ -727,39 +947,39 @@
     <div class="apt-group" id="tab-jesmond">
       <div class="apt-card">
         <div class="apt-area-tag">Jesmond</div>
-        <div class="apt-title">AXIS Premium Apartments</div>
-        <div class="apt-addr">Between Jesmond & City Centre, NE2</div>
-        <div class="apt-price">from £1,500 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 & 2 Bed</span><span class="apt-tag">Utilities Included</span><span class="apt-tag">New Build</span><span class="apt-tag">Balconies</span></div>
-        <div class="apt-features">93 premium new apartments of the highest specification. Many with balconies. All utilities included in rent. Professionally managed building with excellent security. Prime position between Jesmond and the City Centre.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Jesmond.html" target="_blank">Search on Rightmove →</a>
+        <div class="apt-title">Jesmond Exchange — Loft 1-Bed</div>
+        <div class="apt-addr">Manor Court, Jesmond, NE2 3AE</div>
+        <div class="apt-price">~£1,168–£1,345 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed Mezzanine</span><span class="apt-tag">Bills Included</span><span class="apt-tag">Award-Winning</span></div>
+        <div class="apt-features">Brooklyn-style loft 1-bed in converted Art Deco exchange. Spiral stairs, exposed beams, frameless glass. All bills included. In the heart of Jesmond's social scene. Voted best residential development NE 2019.</div>
+        <a class="apt-link" href="https://www.exchangeresidential.com/properties/jesmond-exchange/" target="_blank">Official Site →</a>
       </div>
       <div class="apt-card">
         <div class="apt-area-tag">Jesmond</div>
-        <div class="apt-title">Modern 2-Bed, Lonsdale Court</div>
-        <div class="apt-addr">West Jesmond, NE2</div>
-        <div class="apt-price">£1,200 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">Furnished</span><span class="apt-tag">Next to Metro</span><span class="apt-tag">Professionals</span></div>
-        <div class="apt-features">Top floor apartment right next to West Jesmond Metro station. Close to shops, restaurants, and cafés. Ideal for professionals or students. Easy commute to Northumbria campus.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Jesmond/flats.html" target="_blank">Search on Rightmove →</a>
+        <div class="apt-title">1-Bed, Akenside Terrace</div>
+        <div class="apt-addr">Akenside Terrace, Jesmond, NE2</div>
+        <div class="apt-price">~£1,200 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Top Floor</span><span class="apt-tag">Designer Interior</span><span class="apt-tag">Spacious</span></div>
+        <div class="apt-features">Large top-floor 1-bed on one of Jesmond's most sought-after streets. Interior designed to a high specification. Bright, spacious and very quiet. Minutes from Osborne Road cafés and Jesmond Dene.</div>
+        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Jesmond/1-bed-flats.html" target="_blank">Search on Rightmove →</a>
       </div>
       <div class="apt-card">
         <div class="apt-area-tag">Jesmond</div>
-        <div class="apt-title">2-Bed Apartment, Granville Court</div>
-        <div class="apt-addr">Granville Court, Jesmond, NE2</div>
-        <div class="apt-price">~£1,100 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">5 Min to Metro</span><span class="apt-tag">Unfurnished</span></div>
-        <div class="apt-features">Well-located two-bedroom flat in Jesmond, 5-minute walk to Jesmond Metro station. Local shops and cafés on Osbourne Avenue. Quiet development, good for professionals sharing.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Jesmond/flats.html" target="_blank">Search on Rightmove →</a>
+        <div class="apt-title">1-Bed, Osborne Road — Available Now</div>
+        <div class="apt-addr">Osborne Road, South Jesmond, NE2</div>
+        <div class="apt-price">~£1,000–£1,100 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Available Now</span><span class="apt-tag">Heart of Jesmond</span></div>
+        <div class="apt-features">Beautifully presented 1-bedroom apartment on Osborne Road — Jesmond's main social strip. Walking distance to Jesmond Metro, boutique shops, cafés and restaurants. Perfect lifestyle location.</div>
+        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/South-Jesmond/1-bed-flats.html" target="_blank">Search on Rightmove →</a>
       </div>
       <div class="apt-card">
         <div class="apt-area-tag">Jesmond</div>
-        <div class="apt-title">2-Bed Osborne Terrace — Luxury Refurb</div>
-        <div class="apt-addr">Osborne Terrace, Jesmond, NE2</div>
-        <div class="apt-price">£1,590 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">2 Bath</span><span class="apt-tag">High Spec</span><span class="apt-tag">Newly Refurbed</span></div>
-        <div class="apt-features">Newly refurbished block finished to the highest specification. 2 double bedrooms, 2 bathrooms, stylish modern interior. Excellent transport links and walking distance to all Jesmond amenities.</div>
-        <a class="apt-link" href="https://www.primelocation.com/to-rent/flats/2-bedrooms/tyne-and-wear/sandyford/" target="_blank">Search on PrimeLocation →</a>
+        <div class="apt-title">1-Bed Duplex, Tankerville Place</div>
+        <div class="apt-addr">Tankerville Place, Jesmond, NE2</div>
+        <div class="apt-price">~£800 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Character Flat</span><span class="apt-tag">Walk to Haymarket</span><span class="apt-tag">Furnished</span></div>
+        <div class="apt-features">Character-filled duplex apartment on an exclusive Jesmond street. Walk to Haymarket Metro. Minutes from Clayton Road and Acorn Road. Ideal for a couple or parent/student duo at excellent value.</div>
+        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Jesmond/1-bed-flats.html" target="_blank">Search on Rightmove →</a>
       </div>
     </div>
 
@@ -767,38 +987,38 @@
     <div class="apt-group" id="tab-heaton">
       <div class="apt-card">
         <div class="apt-area-tag">Heaton</div>
-        <div class="apt-title">2-Bed Ground Floor, Rothbury Terrace</div>
-        <div class="apt-addr">Rothbury Terrace, Heaton, NE6</div>
-        <div class="apt-price">£1,100 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">Ground Floor</span><span class="apt-tag">710 sq ft</span><span class="apt-tag">Available Now</span></div>
-        <div class="apt-features">Spacious two-bedroom ground floor flat in popular Heaton. Short walk to local shops, cafés and bus links. Close to Heaton Park. Quiet street, plenty of on-street parking.</div>
+        <div class="apt-title">1-Bed Ground Floor, Heaton Park Road</div>
+        <div class="apt-addr">Heaton Park Road, Heaton, NE6</div>
+        <div class="apt-price">~£750–£900 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Furnished</span><span class="apt-tag">Near Park</span><span class="apt-tag">Bus Links</span></div>
+        <div class="apt-features">Comfortable 1-bed flat in popular Heaton next to Heaton Park. Furnished with all essentials. Great bus connections to Northumbria University. Quiet residential street, safe neighbourhood.</div>
+        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Heaton/1-bed-flats.html" target="_blank">Search on Rightmove →</a>
+      </div>
+      <div class="apt-card">
+        <div class="apt-area-tag">Heaton</div>
+        <div class="apt-title">1-Bed Rialto Development</div>
+        <div class="apt-addr">Rialto Building, Heaton / City, NE6</div>
+        <div class="apt-price">~£900 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Modern Block</span><span class="apt-tag">Furnished</span><span class="apt-tag">Popular Build</span></div>
+        <div class="apt-features">Modern 1-bed in the popular Rialto development — well maintained building close to both universities and the city centre. Good commute to Northumbria, safe managed building with secure access.</div>
         <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Heaton.html" target="_blank">Search on Rightmove →</a>
       </div>
       <div class="apt-card">
         <div class="apt-area-tag">Heaton</div>
-        <div class="apt-title">2-Bed Flat, Heaton Road</div>
-        <div class="apt-addr">Heaton Road, Heaton, NE6</div>
-        <div class="apt-price">£1,250 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">2 Bath</span><span class="apt-tag">Modern</span><span class="apt-tag">Central Location</span></div>
-        <div class="apt-features">Beautiful modern 2-bedroom ground floor apartment in central Heaton. Close to Chillingham Road amenities, Sainsbury's, cafés and frequent bus routes into the city centre and university.</div>
-        <a class="apt-link" href="https://www.onthemarket.com/to-rent/2-bed-flats-apartments/heaton/" target="_blank">Search on OnTheMarket →</a>
+        <div class="apt-title">1-Bed Flat, Chillingham Road Area</div>
+        <div class="apt-addr">Near Chillingham Road, Heaton, NE6</div>
+        <div class="apt-price">~£750–£850 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Best Value</span><span class="apt-tag">Lively Area</span><span class="apt-tag">Available Now</span></div>
+        <div class="apt-features">Best value 1-bedroom in Heaton. Walking distance to Chillingham Road's Sainsbury's, cafés, pubs and bus stops. Frequent buses direct to Northumbria University. Great community feel.</div>
+        <a class="apt-link" href="https://www.onthemarket.com/to-rent/flats-apartments/heaton/" target="_blank">Search on OnTheMarket →</a>
       </div>
       <div class="apt-card">
         <div class="apt-area-tag">Heaton</div>
-        <div class="apt-title">Newly Decorated 2-Bed, Hotspur Street</div>
-        <div class="apt-addr">Hotspur Street, Heaton, NE6</div>
-        <div class="apt-price">~£950 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">Furnished</span><span class="apt-tag">Available Now</span><span class="apt-tag">Renovated</span></div>
-        <div class="apt-features">Newly redecorated and furnished ground floor flat in popular Heaton. Ideally located within walking distance of local shops, cafés and bus stops. Great value for money.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Heaton.html" target="_blank">Search on Rightmove →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Heaton</div>
-        <div class="apt-title">2-Bed Upper Flat, Trewhitt Road</div>
-        <div class="apt-addr">Trewhitt Road, Heaton, NE6</div>
-        <div class="apt-price">£1,200 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">2 Bed</span><span class="apt-tag">Upper Flat</span><span class="apt-tag">Bright & Spacious</span></div>
-        <div class="apt-features">Bright two-bedroom upper flat in sought-after Heaton. Good transport connections, easy access to city centre and Northumbria University. Home office space available in second bedroom.</div>
+        <div class="apt-title">1-Bed with Home Office, Heaton Grove</div>
+        <div class="apt-addr">Heaton Grove, Heaton, NE6</div>
+        <div class="apt-price">~£1,150 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed + Study</span><span class="apt-tag">Modern</span><span class="apt-tag">Available Now</span><span class="apt-tag">Large Rooms</span></div>
+        <div class="apt-features">Generous 1-bed with a dedicated study space — ideal as a second sleeping/working area. Large living room and kitchen. Modern, furnished throughout. Easy access to bus routes serving Northumbria University.</div>
         <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Heaton.html" target="_blank">Search on Rightmove →</a>
       </div>
     </div>
@@ -807,39 +1027,39 @@
     <div class="apt-group" id="tab-citycentre">
       <div class="apt-card">
         <div class="apt-area-tag">City Centre</div>
-        <div class="apt-title">The Forge by Grainger</div>
-        <div class="apt-addr">Forth Banks, Newcastle City Centre, NE1</div>
-        <div class="apt-price">from £1,400 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 & 2 Bed</span><span class="apt-tag">24hr Staff</span><span class="apt-tag">Gym</span><span class="apt-tag">Co-Working</span></div>
-        <div class="apt-features">Top-rated residential building (4.7★). 24-hour staffed lobby, gym, co-working space, community events. Professionals and non-students welcome. Flexible leases available. 10 min walk to Northumbria.</div>
+        <div class="apt-title">The Forge by Grainger — 1-Bed</div>
+        <div class="apt-addr">Forth Banks, Newcastle City Centre, NE1 3AA</div>
+        <div class="apt-price">from £1,100 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">24hr Lobby</span><span class="apt-tag">4.7★</span><span class="apt-tag">Professionals</span></div>
+        <div class="apt-features">Top-rated (4.7★) building with 24-hour staffed lobby — perfect for security. Gym, co-working space, parcel collection. Non-students and couples explicitly welcome. 10 min walk to Northumbria.</div>
         <a class="apt-link" href="https://the-forge-newcastle.co.uk" target="_blank">the-forge-newcastle.co.uk →</a>
       </div>
       <div class="apt-card">
         <div class="apt-area-tag">City Centre</div>
-        <div class="apt-title">City Co Living</div>
-        <div class="apt-addr">Pilgrim Street, City Centre, NE1</div>
-        <div class="apt-price">from £1,350 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">Studio & 1-Bed</span><span class="apt-tag">Luxury</span><span class="apt-tag">Staffed Reception</span><span class="apt-tag">Flexible</span></div>
-        <div class="apt-features">Luxury building welcoming couples and non-students. Staffed reception, modern facilities. Residents describe it as very safe and comfortable. Flexible stays from 1 month. Close to Northumbria.</div>
+        <div class="apt-title">City Co Living — 1-Bed Studio</div>
+        <div class="apt-addr">156 Pilgrim Street, Newcastle, NE1 6SU</div>
+        <div class="apt-price">from £975 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Luxury</span><span class="apt-tag">Staffed Reception</span><span class="apt-tag">Couples OK</span></div>
+        <div class="apt-features">Luxury city centre building explicitly welcoming couples and non-students. Staffed reception, modern amenities, very safe environment. Flexible stays from 1 month. Highly rated by residents.</div>
         <a class="apt-link" href="https://mapartments.co.uk/newcastle/" target="_blank">mapartments.co.uk →</a>
       </div>
       <div class="apt-card">
         <div class="apt-area-tag">City Centre</div>
-        <div class="apt-title">PREMIER SUITES Newcastle</div>
-        <div class="apt-addr">Thornton Street, City Centre, NE1</div>
-        <div class="apt-price">from £1,800 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 & 2 Bed</span><span class="apt-tag">Serviced</span><span class="apt-tag">Family Friendly</span><span class="apt-tag">Parking</span></div>
-        <div class="apt-features">Serviced apartments ideal for two adults. Spacious, fully furnished, with underground parking. Staffed reception and flexible monthly stays. Praised for being great for families. 4.5★ rated.</div>
-        <a class="apt-link" href="https://www.premiersuiteseurope.com/en/locations/united-kingdom/newcastle/serviced-apartments-newcastle" target="_blank">premiersuiteseurope.com →</a>
+        <div class="apt-title">Falconars House — 1-Bed, Bills Included</div>
+        <div class="apt-addr">Falconars House, City Centre, NE1</div>
+        <div class="apt-price">~£850–£950 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Bills Included</span><span class="apt-tag">City Centre</span><span class="apt-tag">Managed</span></div>
+        <div class="apt-features">Fantastic 1-bedroom apartments in managed Falconars House with utility bills included. Ideally situated close to both universities and a wide range of city centre amenities. Great value all-inclusive.</div>
+        <a class="apt-link" href="https://www.primelocation.com/to-rent/flats/1-bedroom/newcastle-upon-tyne/" target="_blank">Search on PrimeLocation →</a>
       </div>
       <div class="apt-card">
         <div class="apt-area-tag">City Centre</div>
-        <div class="apt-title">Week2Week Serviced Apartments</div>
-        <div class="apt-addr">City Road, Newcastle, NE1</div>
-        <div class="apt-price">from £1,200 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">Flexible Lease</span><span class="apt-tag">Furnished</span><span class="apt-tag">All-Inclusive</span><span class="apt-tag">4–8 Months</span></div>
-        <div class="apt-features">Specialists in furnished monthly lets — perfect for 4–8 month stays. All-inclusive pricing available. Professionally managed. 4.6★ rated. Multiple city-centre locations available.</div>
-        <a class="apt-link" href="http://www.week2week.co.uk" target="_blank">week2week.co.uk →</a>
+        <div class="apt-title">Corner Apartment, City Centre</div>
+        <div class="apt-addr">Newcastle City Centre, NE1</div>
+        <div class="apt-price">~£950 <span>/ month</span></div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Corner Apt</span><span class="apt-tag">Furnished</span><span class="apt-tag">Available Now</span></div>
+        <div class="apt-features">Attractive 1-bedroom corner apartment in the heart of Newcastle City Centre. Blends original period features with modern interiors. Walking distance to Quayside, shops, restaurants and all Metro stations.</div>
+        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Newcastle-City-Centre.html" target="_blank">Search on Rightmove →</a>
       </div>
     </div>
   </div>
