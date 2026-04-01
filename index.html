@@ -3,1114 +3,651 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Newcastle Upon Tyne — Your Home Near Northumbria</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Newcastle · Safe Home Near Northumbria</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green: #1D9E75;
-    --green-light: #E1F5EE;
-    --green-dark: #0F6E56;
-    --amber: #BA7517;
-    --amber-light: #FAEEDA;
-    --red: #A32D2D;
-    --red-light: #FCEBEB;
-    --blue: #185FA5;
-    --blue-light: #E6F1FB;
-    --ink: #1a1a1a;
-    --muted: #555;
-    --border: #e0ddd6;
-    --bg: #faf9f6;
-    --white: #ffffff;
-  }
+:root {
+  --green:#1D9E75;--green-light:#E1F5EE;--green-dark:#0F6E56;
+  --amber:#BA7517;--amber-light:#FAEEDA;
+  --red:#A32D2D;--red-light:#FCEBEB;
+  --blue:#185FA5;--blue-light:#E6F1FB;
+  --ink:#1a1a1a;--muted:#666;--border:#e2dfd8;
+  --bg:#faf9f6;--white:#fff;--dark:#0d2b1f;--radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65;padding-bottom:env(safe-area-inset-bottom);}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* TOPBAR */
+.topbar{background:var(--dark);height:52px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(29,158,117,0.35);}
+.topbar-logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;}
+.topbar-logo em{color:#5DCAA5;font-style:normal;}
+.topbar-tag{font-size:11px;background:rgba(29,158,117,0.22);border:1px solid rgba(29,158,117,0.4);color:#9FE1CB;padding:3px 10px;border-radius:20px;font-weight:500;}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    font-size: 16px;
-    line-height: 1.7;
-  }
+/* MAP HERO */
+.map-hero{background:var(--dark);}
+.map-hero-header{padding:14px 16px 10px;text-align:center;}
+.map-hero-title{font-family:'Playfair Display',serif;font-size:clamp(16px,4vw,24px);font-weight:700;color:#fff;margin-bottom:4px;}
+.map-hero-title em{color:#5DCAA5;font-style:normal;}
+.map-hero-sub{font-size:clamp(10px,2.5vw,12px);color:rgba(255,255,255,0.55);}
+.map-svg-wrap{background:#faf9f6;display:block;line-height:0;}
+.map-svg-wrap svg{width:100%;display:block;}
 
-  /* ── TOPBAR ── */
-  .topbar {
-    background: #0d2b1f;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 52px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(29,158,117,0.3);
-  }
-  .topbar-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
-    letter-spacing: -0.01em;
-  }
-  .topbar-logo span { color: #5DCAA5; }
-  .topbar-pills { display: flex; gap: 6px; align-items: center; }
-  .topbar-pill {
-    background: rgba(29,158,117,0.2);
-    border: 1px solid rgba(29,158,117,0.35);
-    color: #9FE1CB;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  @media(max-width: 500px) {
-    .topbar-pill { display: none; }
-    .topbar-pill.show-mobile { display: inline-block; }
-  }
+/* NAV TABS */
+.nav-tabs-wrap{background:var(--dark);border-bottom:2px solid rgba(29,158,117,0.4);position:sticky;top:52px;z-index:150;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.nav-tabs-wrap::-webkit-scrollbar{display:none;}
+.nav-tabs{display:flex;min-width:max-content;padding:0 12px;}
+.nav-tab{padding:13px 18px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;color:rgba(255,255,255,0.5);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s;margin-bottom:-2px;}
+.nav-tab:hover{color:rgba(255,255,255,0.85);}
+.nav-tab.active{color:#5DCAA5;border-bottom-color:#5DCAA5;}
+.tab-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:middle;position:relative;top:-1px;}
 
-  /* ── LAYOUT ── */
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-  section { padding: 56px 0; }
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--green);
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 14px;
-  }
-  .section-sub {
-    font-size: 16px;
-    color: var(--muted);
-    max-width: 620px;
-    margin-bottom: 48px;
-  }
+/* TAB PANELS */
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
 
-  /* ── SECTION OVERRIDE ── */
-  .map-hero { padding: 0 !important; }
+/* PANEL HERO */
+.panel-hero{padding:24px 20px 20px;border-bottom:1px solid var(--border);}
+.panel-hero-inner{max-width:900px;margin:0 auto;}
+.panel-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:6px;}
+.panel-title{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,38px);font-weight:700;line-height:1.15;margin-bottom:10px;}
+.panel-desc{font-size:14px;color:var(--muted);max-width:640px;margin-bottom:14px;line-height:1.6;}
+.panel-stats{display:flex;gap:8px;flex-wrap:wrap;}
+.pstat{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:5px 11px;border-radius:20px;background:var(--bg);border:1px solid var(--border);}
+.pstat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 
-  /* ── MAP SVG SECTION ── */
-  .map-section { background: white; border-bottom: 1px solid var(--border); }
-  .map-hero { padding: 0 !important; }
-  .map-hero .container { padding: 0; max-width: 100%; }
-  .map-intro {
-    background: linear-gradient(135deg, #0d2b1f 0%, #143d28 100%);
-    padding: 20px 24px 16px;
-    text-align: center;
-  }
-  .map-main-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 4vw, 28px);
-    font-weight: 700;
-    color: white;
-    margin-bottom: 6px;
-    line-height: 1.25;
-  }
-  .map-main-title span { color: #5DCAA5; }
-  .map-main-sub {
-    font-size: clamp(11px, 2.5vw, 13px);
-    color: rgba(255,255,255,0.65);
-    margin: 0;
-  }
-  .map-hero .map-wrap {
-    border-radius: 0;
-    border: none;
-    padding: 0;
-    background: white;
-  }
-  .map-hero .map-wrap svg {
-    max-width: 100%;
-    display: block;
-    width: 100%;
-  }
-  .map-wrap {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    padding: 24px;
-  }
-  .map-wrap svg { display: block; width: 100%; max-width: 700px; margin: 0 auto; }
+/* PANEL BODY */
+.panel-body{max-width:900px;margin:0 auto;padding:0 20px 52px;}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
 
-  /* ── NEIGHBOURHOOD CARDS ── */
-  .areas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 24px; }
-  .area-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  .area-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.09); transform: translateY(-2px); }
-  .area-card-header {
-    padding: 20px 24px 16px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-  .area-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-  }
-  .area-badge {
-    flex-shrink: 0;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 4px 10px;
-    border-radius: 20px;
-    margin-top: 4px;
-  }
-  .badge-green { background: var(--green-light); color: var(--green-dark); }
-  .badge-blue { background: var(--blue-light); color: var(--blue); }
-  .badge-amber { background: var(--amber-light); color: var(--amber); }
-  .area-card-body { padding: 20px 24px; }
-  .area-desc { font-size: 14px; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
-  .stat-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-  .stat {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink);
-  }
-  .stat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-green { background: var(--green); }
-  .dot-blue { background: var(--blue); }
-  .dot-amber { background: var(--amber); }
-  .feature-list { list-style: none; }
-  .feature-list li {
-    font-size: 14px;
-    color: var(--muted);
-    padding: 5px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
-  .feature-list li:last-child { border-bottom: none; }
-  .feature-list li::before { content: '→'; color: var(--green); font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+/* INFO CARDS */
+.info-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.info-card-head{padding:14px 16px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.info-card-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.info-card-title{font-size:13px;font-weight:500;color:var(--ink);}
+.info-card-body{padding:14px 16px;}
+.info-list{list-style:none;}
+.info-list li{font-size:13px;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;line-height:1.45;}
+.info-list li:last-child{border-bottom:none;padding-bottom:0;}
+.info-list li::before{content:'→';font-size:11px;color:var(--green);flex-shrink:0;margin-top:2px;}
 
-  /* ── APARTMENTS ── */
-  .apts-section { background: #0d2b1f; }
-  .apts-section .section-label { color: #9FE1CB; }
-  .apts-section .section-title { color: white; }
-  .apts-section .section-sub { color: rgba(255,255,255,0.6); }
-  .apts-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
-  .tab-btn {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.18);
-    color: rgba(255,255,255,0.7);
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .tab-btn.active, .tab-btn:hover {
-    background: var(--green);
-    border-color: var(--green);
-    color: white;
-  }
-  .apt-group { display: none; }
-  .apt-group.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-  .apt-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 14px;
-    padding: 22px;
-    transition: background 0.2s;
-  }
-  .apt-card:hover { background: rgba(255,255,255,0.10); }
-  .apt-area-tag {
-    display: inline-block;
-    background: rgba(29,158,117,0.25);
-    color: #9FE1CB;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 12px;
-    margin-bottom: 12px;
-  }
-  .apt-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 6px;
-    line-height: 1.3;
-  }
-  .apt-addr { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 12px; }
-  .apt-price {
-    font-size: 22px;
-    font-weight: 700;
-    color: #5DCAA5;
-    margin-bottom: 12px;
-  }
-  .apt-price span { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.5); }
-  .apt-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-  .apt-tag {
-    background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.7);
-    font-size: 12px;
-    padding: 3px 9px;
-    border-radius: 8px;
-  }
-  .apt-features { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
-  .apt-link {
-    display: inline-block;
-    margin-top: 14px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #5DCAA5;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(93,202,165,0.4);
-    padding-bottom: 1px;
-  }
-  .apt-link:hover { color: white; border-color: white; }
-  @media(max-width: 768px) {
-    .apt-link { font-size: 14px; padding: 8px 0; display: inline-block; }
-    .tab-btn { min-height: 40px; }
-    .area-card:hover { transform: none; }
-  }
+/* TRANSPORT TABLE */
+.t-table{width:100%;border-collapse:collapse;font-size:13px;}
+.t-table th{text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--border);}
+.t-table td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.t-table tr:last-child td{border-bottom:none;}
+.t-table tr:hover td{background:var(--bg);}
+.t-badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;letter-spacing:.04em;}
+.badge-metro{background:#FAC775;color:#633806;}
+.badge-bus{background:#9FE1CB;color:#085041;}
+.badge-train{background:#B5D4F4;color:#0C447C;}
+.t-walk{color:var(--green);font-weight:500;}
 
-  /* ── SAFETY NOTICE ── */
-  .safety-section { background: white; border-top: 1px solid var(--border); }
-  .safety-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media(max-width: 640px) { .safety-grid { grid-template-columns: 1fr; } }
-  .safety-card {
-    border-radius: 12px;
-    padding: 24px;
-    border: 1px solid;
-  }
-  .safety-card.safe { background: var(--green-light); border-color: rgba(29,158,117,0.3); }
-  .safety-card.avoid { background: var(--red-light); border-color: rgba(163,45,45,0.3); }
-  .safety-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    margin-bottom: 12px;
-  }
-  .safety-card.safe h3 { color: var(--green-dark); }
-  .safety-card.avoid h3 { color: var(--red); }
-  .safety-card ul { list-style: none; }
-  .safety-card ul li { font-size: 14px; padding: 4px 0; display: flex; gap: 8px; }
-  .safety-card.safe ul li::before { content: '✓'; color: var(--green); font-weight: 700; }
-  .safety-card.avoid ul li::before { content: '✕'; color: var(--red); font-weight: 700; }
+/* APARTMENT CARDS */
+.apt-cards{display:grid;grid-template-columns:1fr;gap:14px;}
+.apt-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:box-shadow .2s;}
+.apt-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.apt-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.apt-name{font-size:14px;font-weight:500;color:var(--ink);line-height:1.3;}
+.apt-price{font-size:14px;font-weight:700;color:var(--green);white-space:nowrap;flex-shrink:0;}
+.apt-addr{font-size:12px;color:var(--muted);margin-bottom:8px;}
+.apt-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.apt-tag{font-size:11px;padding:2px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--border);color:var(--ink);}
+.apt-desc{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:10px;}
+.apt-links{display:flex;gap:12px;flex-wrap:wrap;}
+.apt-link{font-size:12px;font-weight:500;color:var(--green);text-decoration:none;border-bottom:1px solid rgba(29,158,117,.35);padding-bottom:1px;}
+.apt-link.map-link{color:var(--blue);border-color:rgba(24,95,165,.35);}
+.apt-link:hover{opacity:.7;}
 
-  /* ── TRANSPORT TABLE ── */
-  .transport-section { background: var(--bg); }
-  .transport-table { width: 100%; border-collapse: collapse; background: white; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
-  .transport-table th {
-    background: #0d2b1f;
-    color: rgba(255,255,255,0.85);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 500;
-    padding: 14px 20px;
-    text-align: left;
-  }
-  .transport-table td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--border); }
-  .transport-table tr:last-child td { border-bottom: none; }
-  .transport-table tr:hover td { background: var(--bg); }
-  .t-type { font-weight: 500; }
-  .t-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 6px;
-    letter-spacing: 0.05em;
-  }
-  .t-metro { background: #FAC775; color: #633806; }
-  .t-train { background: #B5D4F4; color: #0C447C; }
-  .t-bus { background: #9FE1CB; color: #085041; }
-  .t-walk { color: var(--green); font-weight: 500; }
+/* CALLOUT BOXES */
+.callout{border-radius:var(--radius);padding:14px 16px;font-size:13px;line-height:1.6;border:1px solid;margin-top:14px;}
+.callout.green{background:var(--green-light);border-color:rgba(29,158,117,.3);color:var(--green-dark);}
+.callout.amber{background:var(--amber-light);border-color:rgba(186,117,23,.3);color:#5a3a08;}
+.callout strong{display:block;margin-bottom:3px;font-size:13px;}
 
-  /* ── FOOTER ── */
-  footer {
-    background: #0d2b1f;
-    color: rgba(255,255,255,0.45);
-    text-align: center;
-    padding: 32px;
-    font-size: 13px;
-  }
-  footer a { color: #5DCAA5; text-decoration: none; }
+/* SECTION DIVIDER */
+.sdiv{margin:28px 0 16px;display:flex;align-items:center;gap:10px;}
+.sdiv-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--muted);white-space:nowrap;}
+.sdiv::after{content:'';flex:1;height:1px;background:var(--border);}
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero-inner > * { animation: fadeUp 0.6s ease both; }
-  .hero-inner > *:nth-child(1) { animation-delay: 0.0s; }
-  .hero-inner > *:nth-child(2) { animation-delay: 0.1s; }
-  .hero-inner > *:nth-child(3) { animation-delay: 0.2s; }
-  .hero-inner > *:nth-child(4) { animation-delay: 0.3s; }
+/* OVERVIEW PILLS */
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:0;}
+.area-pill{display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:box-shadow .15s,border-color .15s;text-align:left;width:100%;font-family:'DM Sans',sans-serif;}
+.area-pill:hover{box-shadow:0 3px 14px rgba(0,0,0,.09);border-color:var(--green);}
+.pill-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.pill-name{font-size:14px;font-weight:500;color:var(--ink);}
+.pill-sub{font-size:12px;color:var(--muted);margin-top:1px;}
 
-  /* ── MOBILE / RESPONSIVE ── */
-  @media(max-width: 768px) {
-    .container { padding: 0 16px; }
-    section { padding: 36px 0; }
-    .section-title { font-size: 24px; }
-    .section-sub { font-size: 14px; margin-bottom: 24px; }
-    .areas-grid { grid-template-columns: 1fr; gap: 14px; }
-    .apt-group.active { grid-template-columns: 1fr; gap: 12px; }
-    .safety-grid { grid-template-columns: 1fr; gap: 12px; }
-    .map-wrap { padding: 8px; border-radius: 10px; }
-    .apts-tabs { gap: 6px; }
-    .tab-btn { padding: 7px 13px; font-size: 13px; }
-    .area-card-header { flex-direction: column; gap: 6px; }
-    .area-badge { align-self: flex-start; }
-    .stat-row { gap: 5px; }
-    .stat { font-size: 12px; padding: 4px 8px; }
-    .transport-table th, .transport-table td { padding: 10px 12px; font-size: 13px; }
-    .transport-table th:last-child, .transport-table td:last-child { display: none; }
-  }
-  @media(max-width: 480px) {
-    .container { padding: 0 12px; }
-    section { padding: 28px 0; }
-    .section-title { font-size: 20px; }
-    .feature-list li { font-size: 13px; }
-    .area-desc { font-size: 13px; }
-    .apt-card { padding: 15px; }
-    .apt-title { font-size: 15px; }
-    .apt-price { font-size: 18px; }
-    .transport-table th:nth-child(3), .transport-table td:nth-child(3) { display: none; }
-    .topbar-logo { font-size: 14px; }
-  }
-  .featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-  @media(max-width: 680px) {
-    .featured-grid { grid-template-columns: 1fr !important; gap: 16px; }
-  }
+/* AVOID GRID */
+.avoid-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.avoid-card{background:var(--red-light);border:1px solid rgba(163,45,45,.22);border-radius:10px;padding:12px 14px;}
+.avoid-name{font-size:13px;font-weight:500;color:var(--red);margin-bottom:2px;}
+.avoid-desc{font-size:12px;color:#7a3030;line-height:1.45;}
+
+/* FOOTER */
+footer{background:var(--dark);color:rgba(255,255,255,.4);text-align:center;padding:28px 20px calc(28px + env(safe-area-inset-bottom));font-size:12px;}
+footer a{color:#5DCAA5;text-decoration:none;}
+
+/* MOBILE */
+@media(max-width:680px){
+  .panel-grid{grid-template-columns:1fr;}
+  .overview-grid{grid-template-columns:1fr;}
+  .avoid-grid{grid-template-columns:1fr;}
+  .panel-hero{padding:18px 16px 16px;}
+  .panel-body{padding:0 14px 40px;}
+  .panel-title{font-size:22px;}
+  .nav-tab{padding:11px 14px;font-size:12px;}
+  .apt-card-top{flex-direction:column;gap:4px;}
+  .callout{padding:12px 14px;}
+}
+@media(max-width:400px){
+  .topbar-tag{display:none;}
+  .panel-title{font-size:20px;}
+}
 </style>
 </head>
 <body>
 
-<!-- ── TOPBAR ── -->
+<!-- TOPBAR -->
 <header class="topbar">
-  <div class="topbar-logo">Newcastle <span>· Northumbria Guide</span></div>
-  <div class="topbar-pills">
-    <span class="topbar-pill show-mobile">🔒 Safe Areas</span>
-    <span class="topbar-pill">🏫 Near Northumbria</span>
-    <span class="topbar-pill">🚇 Transport</span>
-    <span class="topbar-pill">🛍 Amenities</span>
-  </div>
+  <div class="topbar-logo">Newcastle <em>&middot; Northumbria Guide</em></div>
+  <div class="topbar-tag">&#x1F512; Safe Areas 2026</div>
 </header>
 
-<!-- ── MAP HERO ── -->
-<section class="map-section map-hero">
-  <div class="container">
-    <div class="map-intro">
-      <h2 class="map-main-title">Safe Areas Near <span>Northumbria University</span></h2>
-      <p class="map-main-sub">Green = safe &amp; walkable to campus · Red = avoid · Yellow M = Metro · 2026 crime data</p>
-    </div>
-    <div class="map-wrap">
-      <svg viewBox="0 0 680 540" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </marker>
-        </defs>
-        <rect width="680" height="540" fill="#faf9f6"/>
-        <ellipse cx="318" cy="265" rx="230" ry="195" fill="#1D9E75" opacity="0.07"/>
-        <ellipse cx="318" cy="265" rx="120" ry="102" fill="#1D9E75" opacity="0.10"/>
-        <text x="524" y="196" font-family="DM Sans,sans-serif" font-size="11" fill="#0F6E56" opacity="0.8">20-min walk</text>
-        <text x="416" y="213" font-family="DM Sans,sans-serif" font-size="11" fill="#0F6E56" opacity="0.8">10-min walk</text>
-        <line x1="80" y1="170" x2="590" y2="170" stroke="#ccc" stroke-width="0.8" opacity="0.5"/>
-        <line x1="80" y1="265" x2="590" y2="265" stroke="#ccc" stroke-width="0.8" opacity="0.5"/>
-        <line x1="80" y1="355" x2="590" y2="355" stroke="#ccc" stroke-width="0.8" opacity="0.5"/>
-        <line x1="200" y1="70" x2="200" y2="450" stroke="#ccc" stroke-width="0.8" opacity="0.5"/>
-        <line x1="318" y1="70" x2="318" y2="450" stroke="#ccc" stroke-width="0.8" opacity="0.5"/>
-        <line x1="436" y1="70" x2="436" y2="450" stroke="#ccc" stroke-width="0.8" opacity="0.5"/>
-        <path d="M40 435 Q170 420 290 428 Q410 436 560 422" fill="none" stroke="#85B7EB" stroke-width="7" opacity="0.4"/>
-        <text x="295" y="452" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#378ADD" opacity="0.8">River Tyne</text>
-        <!-- Northumbria -->
-        <rect x="270" y="240" width="96" height="50" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
-        <text x="318" y="261" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#3C3489">Northumbria</text>
-        <text x="318" y="278" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#534AB7">University</text>
-        <!-- Sandyford -->
-        <rect x="148" y="128" width="96" height="50" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
-        <text x="196" y="149" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#085041">Sandyford</text>
-        <text x="196" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0F6E56">~8 min walk</text>
-        <path d="M196 178 L196 212 L270 252" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" opacity="0.7"/>
-        <!-- Jesmond -->
-        <rect x="270" y="76" width="96" height="50" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
-        <text x="318" y="97" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#085041">Jesmond</text>
-        <text x="318" y="115" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0F6E56">~18 min walk</text>
-        <path d="M318 126 L318 240" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" opacity="0.7"/>
-        <!-- Heaton -->
-        <rect x="440" y="128" width="90" height="50" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
-        <text x="485" y="149" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#085041">Heaton</text>
-        <text x="485" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0F6E56">~20 min walk</text>
-        <path d="M485 178 L485 212 L366 252" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" opacity="0.7"/>
-        <!-- City Centre -->
-        <rect x="160" y="355" width="96" height="50" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
-        <text x="208" y="376" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0C447C">City Centre</text>
-        <text x="208" y="393" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185FA5">~10 min walk</text>
-        <path d="M240 368 L270 290" fill="none" stroke="#378ADD" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)" opacity="0.6"/>
-        <!-- Avoid: Byker -->
-        <rect x="556" y="148" width="80" height="44" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
-        <text x="596" y="166" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#791F1F">Byker</text>
-        <text x="596" y="182" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#A32D2D">Avoid</text>
-        <!-- Avoid: Walker -->
-        <rect x="556" y="355" width="80" height="44" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
-        <text x="596" y="373" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#791F1F">Walker</text>
-        <text x="596" y="389" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#A32D2D">Avoid</text>
-        <!-- Avoid: Elswick -->
-        <rect x="40" y="328" width="88" height="44" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
-        <text x="84" y="346" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#791F1F">Elswick</text>
-        <text x="84" y="362" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#A32D2D">Avoid</text>
-        <!-- Gosforth -->
-        <rect x="270" y="12" width="96" height="42" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
-        <text x="318" y="30" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#633806">Gosforth</text>
-        <text x="318" y="46" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#854F0B">~30 min walk</text>
-        <!-- Metro: Haymarket -->
-        <circle cx="318" cy="185" r="13" fill="#FAC775" stroke="#BA7517" stroke-width="1.2"/>
-        <text x="318" y="190" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#633806">M</text>
-        <text x="336" y="181" font-family="DM Sans,sans-serif" font-size="11" fill="#444">Haymarket ~5 min</text>
-        <!-- Metro: Monument -->
-        <circle cx="288" cy="308" r="13" fill="#FAC775" stroke="#BA7517" stroke-width="1.2"/>
-        <text x="288" y="313" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#633806">M</text>
-        <text x="180" y="305" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#444">Monument ~8 min</text>
-        <!-- Metro: St James -->
-        <circle cx="216" cy="278" r="13" fill="#FAC775" stroke="#BA7517" stroke-width="1.2"/>
-        <text x="216" y="283" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#633806">M</text>
-        <text x="95" y="275" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#444">St James ~10 min</text>
-        <!-- Metro: Manors -->
-        <circle cx="408" cy="278" r="13" fill="#FAC775" stroke="#BA7517" stroke-width="1.2"/>
-        <text x="408" y="283" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#633806">M</text>
-        <text x="426" y="274" font-family="DM Sans,sans-serif" font-size="11" fill="#444">Manors ~12 min</text>
-        <!-- Central Station -->
-        <circle cx="358" cy="400" r="13" fill="#FAC775" stroke="#BA7517" stroke-width="1.2"/>
-        <text x="358" y="405" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#633806">M</text>
-        <rect x="376" y="390" width="22" height="22" rx="4" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
-        <text x="387" y="405" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#0C447C">TR</text>
-        <text x="404" y="397" font-family="DM Sans,sans-serif" font-size="11" fill="#444">Central Station</text>
-        <text x="404" y="411" font-family="DM Sans,sans-serif" font-size="10" fill="#888">Metro + Rail · ~15 min</text>
-        <!-- Bus -->
-        <rect x="243" y="220" width="26" height="19" rx="4" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
-        <text x="256" y="233" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#085041">BUS</text>
-        <text x="136" y="224" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#444">Eldon Sq Bus ~6 min</text>
-        <!-- Legend -->
-        <rect x="40" y="470" width="10" height="10" rx="2" fill="#1D9E75"/>
-        <text x="56" y="479" font-family="DM Sans,sans-serif" font-size="11" fill="#555">Safe area</text>
-        <rect x="130" y="470" width="10" height="10" rx="2" fill="#185FA5"/>
-        <text x="146" y="479" font-family="DM Sans,sans-serif" font-size="11" fill="#555">Vibrant/safe</text>
-        <rect x="228" y="470" width="10" height="10" rx="2" fill="#BA7517"/>
-        <text x="244" y="479" font-family="DM Sans,sans-serif" font-size="11" fill="#555">Too far</text>
-        <rect x="310" y="470" width="10" height="10" rx="2" fill="#A32D2D"/>
-        <text x="326" y="479" font-family="DM Sans,sans-serif" font-size="11" fill="#555">Avoid</text>
-        <circle cx="398" cy="475" r="6" fill="#FAC775" stroke="#BA7517" stroke-width="1"/>
-        <text x="398" y="479" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#633806">M</text>
-        <text x="410" y="479" font-family="DM Sans,sans-serif" font-size="11" fill="#555">Metro</text>
-        <rect x="454" y="469" width="12" height="12" rx="3" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
-        <text x="460" y="479" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#0C447C">TR</text>
-        <text x="472" y="479" font-family="DM Sans,sans-serif" font-size="11" fill="#555">Train</text>
-        <rect x="518" y="469" width="12" height="12" rx="3" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
-        <text x="524" y="479" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#085041">BUS</text>
-        <text x="536" y="479" font-family="DM Sans,sans-serif" font-size="11" fill="#555">Bus</text>
-      </svg>
-    </div>
+<!-- MAP HERO -->
+<div class="map-hero">
+  <div class="map-hero-header">
+    <div class="map-hero-title">Safe Areas Near <em>Northumbria University</em></div>
+    <div class="map-hero-sub">Green = safe &amp; walkable &middot; Red = avoid &middot; &#x1F7E1; M = Metro &middot; All within 20 min walk</div>
   </div>
-</section>
-
-<!-- ── NEIGHBOURHOOD GUIDE ── -->
-<section>
-  <div class="container">
-    <div class="section-label">Neighbourhood Guide</div>
-    <h2 class="section-title">Safe Areas in Detail</h2>
-    <p class="section-sub">Here's everything you need to know about each safe area — how close it is to Northumbria University, what's nearby, and how to get around.</p>
-    <div class="areas-grid">
-
-      <!-- Sandyford -->
-      <div class="area-card">
-        <div class="area-card-header">
-          <div>
-            <div class="area-name">Sandyford</div>
-            <div style="font-size:13px;color:#555;margin-top:2px">NE2 postcode</div>
-          </div>
-          <span class="area-badge badge-green">Closest Safe Area</span>
-        </div>
-        <div class="area-card-body">
-          <p class="area-desc">Quiet, primarily residential neighbourhood sitting directly between Jesmond and the City Campus. Popular with students and professionals alike. Streets are calm, well-lit and leafy.</p>
-          <div class="stat-row">
-            <div class="stat"><span class="stat-dot dot-green"></span>~8 min walk to uni</div>
-            <div class="stat"><span class="stat-dot dot-blue"></span>Crime: Low</div>
-            <div class="stat"><span class="stat-dot dot-green"></span>Safe at night</div>
-          </div>
-          <ul class="feature-list">
-            <li>Haymarket Metro just 5 min walk — connect citywide in minutes</li>
-            <li>Eldon Square bus interchange 6 min walk — dozens of routes</li>
-            <li>Independent cafés, corner shops & restaurants on Sandyford Road</li>
-            <li>Short walk to Jesmond's Acorn Road & Brentwood Ave shopping</li>
-            <li>Close to Newcastle City Centre for major supermarkets & retail</li>
-            <li>Jesmond Dene park nearby for walks and outdoor relaxation</li>
-            <li>2 bedroom flats from ~£950–£1,430/month</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Jesmond -->
-      <div class="area-card">
-        <div class="area-card-header">
-          <div>
-            <div class="area-name">Jesmond</div>
-            <div style="font-size:13px;color:#555;margin-top:2px">NE2 postcode</div>
-          </div>
-          <span class="area-badge badge-green">Safest / Most Prestigious</span>
-        </div>
-        <div class="area-card-body">
-          <p class="area-desc">Newcastle's most sought-after residential area. Tree-lined streets, Victorian architecture, fantastic independent restaurants and boutiques. Consistently the lowest crime rate in the city.</p>
-          <div class="stat-row">
-            <div class="stat"><span class="stat-dot dot-green"></span>~18 min walk to uni</div>
-            <div class="stat"><span class="stat-dot dot-blue"></span>Crime: Very Low</div>
-            <div class="stat"><span class="stat-dot dot-green"></span>65 crimes/1,000</div>
-          </div>
-          <ul class="feature-list">
-            <li>Jesmond Metro & West Jesmond Metro — direct line to city centre</li>
-            <li>Acorn Road: boutique shops, bakeries, wine bars, independent eateries</li>
-            <li>Brentwood Avenue: supermarkets, pharmacies, everyday essentials</li>
-            <li>Jesmond Dene — stunning riverside park on your doorstep</li>
-            <li>Regular bus routes directly to Northumbria University campus</li>
-            <li>Excellent selection of cafés for studying or leisure</li>
-            <li>2 bedroom flats from ~£850–£1,590/month</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Heaton -->
-      <div class="area-card">
-        <div class="area-card-header">
-          <div>
-            <div class="area-name">Heaton</div>
-            <div style="font-size:13px;color:#555;margin-top:2px">NE6 postcode</div>
-          </div>
-          <span class="area-badge badge-green">Best Value Safe Area</span>
-        </div>
-        <div class="area-card-body">
-          <p class="area-desc">Vibrant, community-oriented neighbourhood with a lively café culture. Chillingham Road is the social hub — packed with independent bars, cafés and shops. Very popular with young professionals.</p>
-          <div class="stat-row">
-            <div class="stat"><span class="stat-dot dot-green"></span>~20 min walk to uni</div>
-            <div class="stat"><span class="stat-dot dot-blue"></span>Crime: Low–Medium</div>
-            <div class="stat"><span class="stat-dot dot-green"></span>Safe streets</div>
-          </div>
-          <ul class="feature-list">
-            <li>Frequent buses along Chillingham Road direct to city centre & uni</li>
-            <li>Heaton Park — large green space perfect for daily walks</li>
-            <li>Chillingham Road: Sainsbury's, indie cafés, pubs, takeaways</li>
-            <li>Very affordable rents compared to Jesmond</li>
-            <li>Strong community feel — friendly neighbours and active local scene</li>
-            <li>Close to Byker Metro for quick connections across the network</li>
-            <li>2 bedroom flats from ~£775–£1,250/month</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- City Centre -->
-      <div class="area-card">
-        <div class="area-card-header">
-          <div>
-            <div class="area-name">City Centre</div>
-            <div style="font-size:13px;color:#555;margin-top:2px">NE1 postcode</div>
-          </div>
-          <span class="area-badge badge-blue">Most Convenient</span>
-        </div>
-        <div class="area-card-body">
-          <p class="area-desc">Living in a secure, managed building in the city centre puts you at the heart of everything. Lively on weekends but well-policed. Choose a building with lobby security for peace of mind.</p>
-          <div class="stat-row">
-            <div class="stat"><span class="stat-dot dot-blue"></span>~10 min walk to uni</div>
-            <div class="stat"><span class="stat-dot dot-amber"></span>Busy nightlife area</div>
-            <div class="stat"><span class="stat-dot dot-blue"></span>Secured buildings</div>
-          </div>
-          <ul class="feature-list">
-            <li>Monument, St James & Central Station Metro all within 10 min walk</li>
-            <li>Eldon Square — one of the UK's largest indoor shopping centres</li>
-            <li>Northumberland Street: major retail, M&S, Primark, John Lewis</li>
-            <li>Grainger Market: historic indoor market with fresh produce & cafés</li>
-            <li>Wide range of restaurants, gyms and cultural venues</li>
-            <li>Choose secured apartment buildings like The Forge or City Co Living</li>
-            <li>Serviced 2-bed flats from ~£1,500–£2,800/month (inc. bills)</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
+  <div class="map-svg-wrap">
+    <svg viewBox="0 0 680 510" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <rect width="680" height="510" fill="#faf9f6"/>
+      <ellipse cx="318" cy="258" rx="224" ry="190" fill="#1D9E75" opacity="0.06"/>
+      <ellipse cx="318" cy="258" rx="116" ry="100" fill="#1D9E75" opacity="0.09"/>
+      <text x="526" y="188" font-family="DM Sans,sans-serif" font-size="10" fill="#0F6E56" opacity="0.75">20-min walk</text>
+      <text x="412" y="206" font-family="DM Sans,sans-serif" font-size="10" fill="#0F6E56" opacity="0.75">10-min walk</text>
+      <line x1="80" y1="164" x2="590" y2="164" stroke="#ccc" stroke-width="0.7" opacity="0.45"/>
+      <line x1="80" y1="258" x2="590" y2="258" stroke="#ccc" stroke-width="0.7" opacity="0.45"/>
+      <line x1="80" y1="348" x2="590" y2="348" stroke="#ccc" stroke-width="0.7" opacity="0.45"/>
+      <line x1="200" y1="65" x2="200" y2="430" stroke="#ccc" stroke-width="0.7" opacity="0.45"/>
+      <line x1="318" y1="65" x2="318" y2="430" stroke="#ccc" stroke-width="0.7" opacity="0.45"/>
+      <line x1="436" y1="65" x2="436" y2="430" stroke="#ccc" stroke-width="0.7" opacity="0.45"/>
+      <path d="M40 422 Q170 408 290 416 Q410 424 560 410" fill="none" stroke="#85B7EB" stroke-width="7" opacity="0.4"/>
+      <text x="295" y="438" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#378ADD" opacity="0.75">River Tyne</text>
+      <rect x="270" y="233" width="96" height="50" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+      <text x="318" y="254" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#3C3489">Northumbria</text>
+      <text x="318" y="271" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#534AB7">University</text>
+      <rect x="148" y="122" width="96" height="50" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+      <text x="196" y="143" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#085041">Sandyford</text>
+      <text x="196" y="160" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#0F6E56">~8 min walk</text>
+      <path d="M196 172 L196 208 L270 246" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr)" opacity="0.65"/>
+      <rect x="270" y="72" width="96" height="50" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+      <text x="318" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#085041">Jesmond</text>
+      <text x="318" y="110" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#0F6E56">~18 min walk</text>
+      <path d="M318 122 L318 233" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr)" opacity="0.65"/>
+      <rect x="440" y="122" width="90" height="50" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+      <text x="485" y="143" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#085041">Heaton</text>
+      <text x="485" y="160" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#0F6E56">~20 min walk</text>
+      <path d="M485 172 L485 208 L366 246" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr)" opacity="0.65"/>
+      <rect x="160" y="348" width="96" height="50" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+      <text x="208" y="369" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0C447C">City Centre</text>
+      <text x="208" y="386" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#185FA5">~10 min walk</text>
+      <path d="M240 362 L270 286" fill="none" stroke="#378ADD" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr)" opacity="0.6"/>
+      <rect x="270" y="10" width="96" height="42" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+      <text x="318" y="28" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#633806">Gosforth</text>
+      <text x="318" y="44" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#854F0B">~30 min walk</text>
+      <rect x="556" y="142" width="80" height="42" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+      <text x="596" y="160" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#791F1F">Byker</text>
+      <text x="596" y="175" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#A32D2D">Avoid</text>
+      <rect x="556" y="348" width="80" height="42" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+      <text x="596" y="366" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#791F1F">Walker</text>
+      <text x="596" y="381" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#A32D2D">Avoid</text>
+      <rect x="40" y="322" width="88" height="42" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+      <text x="84" y="340" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#791F1F">Elswick</text>
+      <text x="84" y="355" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#A32D2D">Avoid</text>
+      <circle cx="318" cy="178" r="13" fill="#FAC775" stroke="#BA7517" stroke-width="1.2"/>
+      <text x="318" y="183" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#633806">M</text>
+      <text x="336" y="175" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Haymarket ~5 min</text>
+      <circle cx="288" cy="302" r="13" fill="#FAC775" stroke="#BA7517" stroke-width="1.2"/>
+      <text x="288" y="307" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#633806">M</text>
+      <text x="178" y="298" text-anchor="end" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Monument ~8 min</text>
+      <circle cx="214" cy="272" r="13" fill="#FAC775" stroke="#BA7517" stroke-width="1.2"/>
+      <text x="214" y="277" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#633806">M</text>
+      <text x="95" y="268" text-anchor="end" font-family="DM Sans,sans-serif" font-size="10" fill="#555">St James ~10 min</text>
+      <circle cx="408" cy="272" r="13" fill="#FAC775" stroke="#BA7517" stroke-width="1.2"/>
+      <text x="408" y="277" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#633806">M</text>
+      <text x="426" y="268" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Manors ~12 min</text>
+      <circle cx="356" cy="392" r="13" fill="#FAC775" stroke="#BA7517" stroke-width="1.2"/>
+      <text x="356" y="397" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#633806">M</text>
+      <rect x="374" y="382" width="22" height="22" rx="4" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+      <text x="385" y="397" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#0C447C">TR</text>
+      <text x="402" y="389" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Central Stn ~15 min</text>
+      <text x="402" y="401" font-family="DM Sans,sans-serif" font-size="9" fill="#888">Metro + National Rail</text>
+      <rect x="241" y="214" width="26" height="19" rx="4" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+      <text x="254" y="227" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#085041">BUS</text>
+      <text x="134" y="218" text-anchor="end" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Eldon Sq ~6 min</text>
+      <rect x="38" y="460" width="9" height="9" rx="2" fill="#1D9E75"/>
+      <text x="52" y="469" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Safe area</text>
+      <rect x="116" y="460" width="9" height="9" rx="2" fill="#185FA5"/>
+      <text x="130" y="469" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Safe/vibrant</text>
+      <rect x="208" y="460" width="9" height="9" rx="2" fill="#BA7517"/>
+      <text x="222" y="469" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Too far</text>
+      <rect x="286" y="460" width="9" height="9" rx="2" fill="#A32D2D"/>
+      <text x="300" y="469" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Avoid</text>
+      <circle cx="356" cy="465" r="6" fill="#FAC775" stroke="#BA7517" stroke-width="1"/>
+      <text x="356" y="469" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#633806">M</text>
+      <text x="368" y="469" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Metro</text>
+      <rect x="412" y="459" width="13" height="13" rx="3" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+      <text x="418" y="470" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#0C447C">TR</text>
+      <text x="431" y="469" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Train</text>
+      <rect x="476" y="459" width="13" height="13" rx="3" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+      <text x="482" y="470" font-family="DM Sans,sans-serif" font-size="7" font-weight="700" fill="#085041">BUS</text>
+      <text x="495" y="469" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Bus</text>
+      <text x="630" y="88" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#888">N</text>
+      <line x1="630" y1="94" x2="630" y2="108" stroke="#999" stroke-width="1.5" marker-end="url(#arr)"/>
+    </svg>
   </div>
-</section>
+</div>
 
-<!-- ── TRANSPORT TABLE ── -->
-<section class="transport-section">
-  <div class="container">
-    <div class="section-label">Getting Around</div>
-    <h2 class="section-title">Transport Links</h2>
-    <p class="section-sub">All stations below are within walking distance of Northumbria University's City Campus or the safe neighbourhoods listed above.</p>
-    <table class="transport-table">
-      <thead>
-        <tr>
-          <th>Station / Stop</th>
-          <th>Type</th>
-          <th>Walk from Uni</th>
-          <th>Best for</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="t-type">Haymarket</td>
-          <td><span class="t-badge t-metro">Metro</span></td>
-          <td class="t-walk">~5 min</td>
-          <td style="font-size:13px;color:#555">Jesmond, Gosforth, Airport, Coast</td>
-        </tr>
-        <tr>
-          <td class="t-type">Eldon Square</td>
-          <td><span class="t-badge t-bus">Bus</span></td>
-          <td class="t-walk">~6 min</td>
-          <td style="font-size:13px;color:#555">All city neighbourhoods, Heaton, Gateshead</td>
-        </tr>
-        <tr>
-          <td class="t-type">Monument</td>
-          <td><span class="t-badge t-metro">Metro</span></td>
-          <td class="t-walk">~8 min</td>
-          <td style="font-size:13px;color:#555">Main interchange — all Metro lines</td>
-        </tr>
-        <tr>
-          <td class="t-type">St James</td>
-          <td><span class="t-badge t-metro">Metro</span></td>
-          <td class="t-walk">~10 min</td>
-          <td style="font-size:13px;color:#555">West Newcastle, MetroCentre</td>
-        </tr>
-        <tr>
-          <td class="t-type">Manors</td>
-          <td><span class="t-badge t-metro">Metro</span></td>
-          <td class="t-walk">~12 min</td>
-          <td style="font-size:13px;color:#555">East Newcastle, Wallsend, South Shields</td>
-        </tr>
-        <tr>
-          <td class="t-type">Newcastle Central Station</td>
-          <td><span class="t-badge t-metro">Metro</span> <span class="t-badge t-train" style="margin-left:4px">Train</span></td>
-          <td class="t-walk">~15 min</td>
-          <td style="font-size:13px;color:#555">National Rail (London, Edinburgh), Metro green/yellow lines</td>
-        </tr>
-      </tbody>
-    </table>
+<!-- NAV TABS -->
+<div class="nav-tabs-wrap">
+  <div class="nav-tabs" role="tablist">
+    <button class="nav-tab active" onclick="switchTab('overview')"><span class="tab-dot" style="background:#5DCAA5"></span>Overview</button>
+    <button class="nav-tab" onclick="switchTab('sandyford')"><span class="tab-dot" style="background:#1D9E75"></span>Sandyford</button>
+    <button class="nav-tab" onclick="switchTab('jesmond')"><span class="tab-dot" style="background:#1D9E75"></span>Jesmond</button>
+    <button class="nav-tab" onclick="switchTab('heaton')"><span class="tab-dot" style="background:#1D9E75"></span>Heaton</button>
+    <button class="nav-tab" onclick="switchTab('citycentre')"><span class="tab-dot" style="background:#185FA5"></span>City Centre</button>
   </div>
-</section>
+</div>
 
-<!-- ── FEATURED BUILDINGS ── -->
-<section style="background:#fff;border-top:1px solid var(--border)">
-  <div class="container">
-    <div class="section-label">Best Apartment Buildings</div>
-    <h2 class="section-title">Top 1-Bedroom Builds in Safe Areas</h2>
-    <p class="section-sub">These are the best-rated, purpose-built residential buildings in the safe green neighbourhoods — perfect for you and your mum sharing a 1-bedroom apartment. Each listing includes the full address and a map link.</p>
-
-    <div class="featured-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px">
-
-      <!-- Urban Study Jesmond -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
-        <div style="background:linear-gradient(135deg,#0d2b1f,#1D9E75 200%);padding:22px 24px 18px">
-          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#9FE1CB;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">Sandyford / Jesmond Border</div>
-          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">Urban Study Jesmond</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Grantham Road, Shieldfield, NE2 1QX</div>
-        </div>
-        <div style="padding:20px 24px">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">All Bills Included</span>
-            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">24/7 CCTV</span>
-            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Couples Welcome</span>
-            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Gym & Cinema</span>
-          </div>
-          <div style="font-size:26px;font-weight:700;color:var(--green);margin-bottom:4px">~£820–£890 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Bills included (exc. Council Tax)</div>
-          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">High-spec 1-bed studio apartments. Just 5 minutes' walk to Northumbria University. Secure carded entry, 24/7 CCTV, daytime concierge, on-site gym, cinema room, private dining room and games area. Bus stop directly outside. Suitable for couples. All utilities and broadband included.</div>
-          <div style="background:#f0faf5;border:1px solid #b6e8d0;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
-            <div style="font-weight:500;color:#0F6E56;margin-bottom:4px">📍 Location & Transport</div>
-            <div style="color:#555">Grantham Road, NE2 1QX · 5 min walk to Northumbria · Bus stop at door · Manors Metro 12 min walk · City centre 15 min walk</div>
-          </div>
-          <a href="https://www.rightmove.co.uk/properties/163283486" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--green);text-decoration:none;border-bottom:1px solid rgba(29,158,117,0.4);padding-bottom:1px;margin-right:14px">View on Rightmove →</a>
-          <a href="https://www.google.com/maps/search/Grantham+Road+Shieldfield+Newcastle+NE2+1QX" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
-        </div>
-      </div>
-
-      <!-- Jesmond Exchange -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
-        <div style="background:linear-gradient(135deg,#1a1a2e,#534AB7 200%);padding:22px 24px 18px">
-          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#CECBF6;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">South Jesmond</div>
-          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">Jesmond Exchange</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Manor Court, Jesmond, NE2 3AE</div>
-        </div>
-        <div style="padding:20px 24px">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-            <span style="background:#EEEDFE;color:#3C3489;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Bills Included</span>
-            <span style="background:#EEEDFE;color:#3C3489;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Loft-Style</span>
-            <span style="background:#EEEDFE;color:#3C3489;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Award-Winning</span>
-            <span style="background:#EEEDFE;color:#3C3489;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Industrial Chic</span>
-          </div>
-          <div style="font-size:26px;font-weight:700;color:#534AB7;margin-bottom:4px">~£1,168–£1,345 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">All bills included (exc. Council Tax & TV licence)</div>
-          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">Award-winning Brooklyn-style loft 1-bedroom apartments in a converted Art Deco telephone exchange. Spiral staircases, exposed beams, frameless glass mezzanines. Voted Residential Project of the Year 2019. Located in the heart of Jesmond, minutes from Osborne Road's bars and restaurants.</div>
-          <div style="background:#f4f2fe;border:1px solid #d0cdf7;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
-            <div style="font-weight:500;color:#3C3489;margin-bottom:4px">📍 Location & Transport</div>
-            <div style="color:#555">Manor Court, NE2 3AE · ~18 min walk to Northumbria · Haymarket Metro 10 min walk · Osborne Road cafés & shops 2 min · Jesmond Dene 5 min</div>
-          </div>
-          <a href="https://www.exchangeresidential.com/properties/jesmond-exchange/" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:#534AB7;text-decoration:none;border-bottom:1px solid rgba(83,74,183,0.4);padding-bottom:1px;margin-right:14px">Official Website →</a>
-          <a href="https://www.google.com/maps/search/Jesmond+Exchange+Manor+Court+Newcastle+NE2+3AE" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
-        </div>
-      </div>
-
-      <!-- Portland Apartments Sandyford -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
-        <div style="background:linear-gradient(135deg,#0a3d2b,#0F6E56 200%);padding:22px 24px 18px">
-          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#9FE1CB;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">Sandyford — Closest to Uni</div>
-          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">Portland Apartments</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Portland Terrace, Sandyford, NE2 1QX</div>
-        </div>
-        <div style="padding:20px 24px">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">New Development</span>
-            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">En-Suite</span>
-            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Fully Furnished</span>
-            <span style="background:#E1F5EE;color:#085041;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Secure Entry</span>
-          </div>
-          <div style="font-size:26px;font-weight:700;color:var(--green);margin-bottom:4px">~£895–£1,100 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">1-bed en-suite apartments, bills negotiable</div>
-          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">Brand new, high-specification 1-bedroom en-suite apartments in quiet Sandyford. Fully furnished, modern interiors, secure entry system. This is the closest safe development to Northumbria's City Campus — just minutes on foot. Ideal for a parent/student duo.</div>
-          <div style="background:#f0faf5;border:1px solid #b6e8d0;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
-            <div style="font-weight:500;color:#0F6E56;margin-bottom:4px">📍 Location & Transport</div>
-            <div style="color:#555">Portland Terrace, NE2 1QX · ~8 min walk to Northumbria · Haymarket Metro 6 min walk · Sandyford Rd shops 2 min · City centre 12 min walk</div>
-          </div>
-          <a href="https://www.rightmove.co.uk/property-to-rent/Sandyford.html" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--green);text-decoration:none;border-bottom:1px solid rgba(29,158,117,0.4);padding-bottom:1px;margin-right:14px">Search Rightmove →</a>
-          <a href="https://www.google.com/maps/search/Portland+Terrace+Sandyford+Newcastle+NE2" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
-        </div>
-      </div>
-
-      <!-- The Forge by Grainger -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
-        <div style="background:linear-gradient(135deg,#0d2b1f,#185FA5 200%);padding:22px 24px 18px">
-          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#B5D4F4;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">City Centre — 10 min walk</div>
-          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">The Forge by Grainger</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Forth Banks, Newcastle, NE1 3AA</div>
-        </div>
-        <div style="padding:20px 24px">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">24hr Staffed Lobby</span>
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">4.7★ Rated</span>
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Gym & Co-Work</span>
-            <span style="background:#E6F1FB;color:#0C447C;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Non-Students OK</span>
-          </div>
-          <div style="font-size:26px;font-weight:700;color:var(--blue);margin-bottom:4px">from £1,100 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">1-bed apartments, flexible lease options</div>
-          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">The highest-rated residential building near Northumbria (4.7★, 175+ reviews). Purpose-built for professionals and non-students — perfect for a mother and adult child. 24-hour staffed lobby, on-site gym, co-working space and parcel collection. Residents consistently praise the safety and community feel.</div>
-          <div style="background:#eef5fd;border:1px solid #b5d4f4;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
-            <div style="font-weight:500;color:#0C447C;margin-bottom:4px">📍 Location & Transport</div>
-            <div style="color:#555">Forth Banks, NE1 3AA · 10 min walk to Northumbria · St James Metro 5 min · Central Station 8 min · Monument Metro 10 min · Eldon Square shops nearby</div>
-          </div>
-          <a href="https://the-forge-newcastle.co.uk" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px;margin-right:14px">Official Website →</a>
-          <a href="https://www.google.com/maps/search/The+Forge+Forth+Banks+Newcastle+NE1+3AA" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
-        </div>
-      </div>
-
-      <!-- Akenside Terrace Jesmond -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
-        <div style="background:linear-gradient(135deg,#1f2a0a,#639922 200%);padding:22px 24px 18px">
-          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#C0DD97;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">Jesmond</div>
-          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">1-Bed on Akenside Terrace</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Akenside Terrace, Jesmond, NE2</div>
-        </div>
-        <div style="padding:20px 24px">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-            <span style="background:#EAF3DE;color:#27500A;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">High Spec Interior</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Top Floor</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Jesmond Village</span>
-            <span style="background:#EAF3DE;color:#27500A;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Spacious</span>
-          </div>
-          <div style="font-size:26px;font-weight:700;color:#3B6D11;margin-bottom:4px">~£1,200 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Large 1-bed, interior designer finished</div>
-          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">Large top-floor 1-bedroom apartment on sought-after Akenside Terrace in the heart of Jesmond. Interior designed to a high specification, bright and spacious throughout. Located a stone's throw from Jesmond's café culture and green spaces. Very quiet, safe street.</div>
-          <div style="background:#f2f9e8;border:1px solid #c0dd97;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
-            <div style="font-weight:500;color:#27500A;margin-bottom:4px">📍 Location & Transport</div>
-            <div style="color:#555">Akenside Terrace, NE2 · ~18 min walk to Northumbria · Haymarket Metro 8 min walk · Acorn Road shops 3 min · Jesmond Dene park 5 min</div>
-          </div>
-          <a href="https://www.rightmove.co.uk/property-to-rent/Jesmond/1-bed-flats.html" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:#3B6D11;text-decoration:none;border-bottom:1px solid rgba(59,109,17,0.4);padding-bottom:1px;margin-right:14px">Search Rightmove →</a>
-          <a href="https://www.google.com/maps/search/Akenside+Terrace+Jesmond+Newcastle+NE2" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
-        </div>
-      </div>
-
-      <!-- Hutton Terrace 1-Bed Sandyford -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden">
-        <div style="background:linear-gradient(135deg,#2b1a0d,#BA7517 200%);padding:22px 24px 18px">
-          <div style="display:inline-block;background:rgba(255,255,255,0.15);color:#FAC775;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:12px;margin-bottom:10px">Sandyford — Garden</div>
-          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;line-height:1.2;margin-bottom:4px">1-Bed with Garden, Hutton Terrace</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.6)">Hutton Terrace, Sandyford, NE2</div>
-        </div>
-        <div style="padding:20px 24px">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-            <span style="background:#FAEEDA;color:#633806;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Private Garden</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Gated Parking</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Modern Interiors</span>
-            <span style="background:#FAEEDA;color:#633806;font-size:12px;padding:3px 9px;border-radius:8px;font-weight:500">Quiet Street</span>
-          </div>
-          <div style="font-size:26px;font-weight:700;color:var(--amber);margin-bottom:4px">~£895 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ month</span></div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">1-bed with private garden, secure gated parking</div>
-          <div style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">Modern 1-bedroom apartment on the popular Hutton Terrace in Sandyford — one of the most desirable streets in the area. Features a private garden and secure gated parking, rare for this price range. Very close to Northumbria University and Jesmond Dene. Ideal for a relaxed, quiet lifestyle.</div>
-          <div style="background:#fdf5e5;border:1px solid #f5c27a;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
-            <div style="font-weight:500;color:#633806;margin-bottom:4px">📍 Location & Transport</div>
-            <div style="color:#555">Hutton Terrace, NE2 · ~8 min walk to Northumbria · Haymarket Metro 7 min walk · Jesmond Dene 5 min · City centre 15 min walk</div>
-          </div>
-          <a href="https://www.onthemarket.com/to-rent/flats-apartments/sandyford/" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(186,117,23,0.4);padding-bottom:1px;margin-right:14px">Search OnTheMarket →</a>
-          <a href="https://www.google.com/maps/search/Hutton+Terrace+Sandyford+Newcastle+NE2" target="_blank" style="display:inline-block;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(24,95,165,0.4);padding-bottom:1px">📍 Google Maps →</a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Note -->
-    <div style="margin-top:32px;background:#f0faf5;border:1px solid #b6e8d0;border-radius:12px;padding:20px 24px;font-size:14px;color:#0F6E56;line-height:1.7">
-      <strong>💡 Tip for you and your mum:</strong> A 1-bedroom apartment works well for two people — one person takes the bedroom, one converts the living room sofa bed. Many of these buildings also offer dual-occupancy or couple pricing. Always call ahead to confirm they accept two adult non-student occupants and ask about flexible lease lengths (4–8 months). <strong>Urban Study Jesmond and The Forge by Grainger</strong> are both explicitly listed as suitable for couples and professionals.
-    </div>
-  </div>
-</section>
-
-<!-- ── APARTMENTS ── -->
-<section class="apts-section">
-  <div class="container">
-    <div class="section-label">1-Bedroom Listings by Area</div>
-    <h2 class="section-title" style="color:white">Browse 1-Bed Apartments</h2>
-    <p class="section-sub">Filtered to 1-bedroom apartments in the safe green areas. Prices sourced from Rightmove, Zoopla and PrimeLocation — correct as of April 2026.</p>
-    <div class="apts-tabs">
-      <button class="tab-btn active" onclick="showTab('sandyford')">Sandyford</button>
-      <button class="tab-btn" onclick="showTab('jesmond')">Jesmond</button>
-      <button class="tab-btn" onclick="showTab('heaton')">Heaton</button>
-      <button class="tab-btn" onclick="showTab('citycentre')">City Centre</button>
-    </div>
-
-    <!-- Sandyford -->
-    <div class="apt-group active" id="tab-sandyford">
-      <div class="apt-card">
-        <div class="apt-area-tag">Sandyford</div>
-        <div class="apt-title">1-Bed Studio, Urban Study Jesmond</div>
-        <div class="apt-addr">Grantham Road, Shieldfield, NE2 1QX</div>
-        <div class="apt-price">~£820–£890 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Bills Included</span><span class="apt-tag">Gym</span><span class="apt-tag">Couples OK</span></div>
-        <div class="apt-features">All-inclusive 1-bed studio. 5 min walk to Northumbria. 24/7 CCTV, concierge, on-site gym & cinema. Bus stop directly outside. Broadband, water & electricity all included.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/properties/163283486" target="_blank">View on Rightmove →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Sandyford</div>
-        <div class="apt-title">1-Bed En-Suite, Portland Apartments</div>
-        <div class="apt-addr">Portland Terrace, Sandyford, NE2 1QX</div>
-        <div class="apt-price">~£895–£1,100 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">New Build</span><span class="apt-tag">Fully Furnished</span><span class="apt-tag">En-Suite</span></div>
-        <div class="apt-features">Brand new high-spec 1-bed en-suite in quiet Sandyford. Closest safe development to Northumbria campus — just 8 minutes on foot. Secure entry. Modern fittings throughout.</div>
-        <a class="apt-link" href="https://www.primelocation.com/to-rent/property/tyne-and-wear/sandyford/sandyford-road/" target="_blank">View on PrimeLocation →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Sandyford</div>
-        <div class="apt-title">1-Bed with Garden, Hutton Terrace</div>
-        <div class="apt-addr">Hutton Terrace, Sandyford, NE2</div>
-        <div class="apt-price">~£895 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Private Garden</span><span class="apt-tag">Gated Parking</span><span class="apt-tag">Quiet</span></div>
-        <div class="apt-features">Modern 1-bed on one of Sandyford's most desirable streets. Private garden and secure gated parking. Perfect for two adults wanting outdoor space. 8 min walk to Northumbria.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Sandyford.html" target="_blank">Search on Rightmove →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Sandyford</div>
-        <div class="apt-title">Newly Refurbished 1-Bed Apartment</div>
-        <div class="apt-addr">Sandyford Road / Lillico House, NE2</div>
-        <div class="apt-price">~£650–£800 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Available Now</span><span class="apt-tag">Good Transport</span><span class="apt-tag">Refurbished</span></div>
-        <div class="apt-features">Newly refurbished 1-bed in Sandyford. Excellent transport links, walking distance to both Newcastle and Northumbria campuses and the city centre. Best value option in the area.</div>
-        <a class="apt-link" href="https://www.onthemarket.com/to-rent/flats-apartments/sandyford/" target="_blank">Search on OnTheMarket →</a>
-      </div>
-    </div>
-
-    <!-- Jesmond -->
-    <div class="apt-group" id="tab-jesmond">
-      <div class="apt-card">
-        <div class="apt-area-tag">Jesmond</div>
-        <div class="apt-title">Jesmond Exchange — Loft 1-Bed</div>
-        <div class="apt-addr">Manor Court, Jesmond, NE2 3AE</div>
-        <div class="apt-price">~£1,168–£1,345 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed Mezzanine</span><span class="apt-tag">Bills Included</span><span class="apt-tag">Award-Winning</span></div>
-        <div class="apt-features">Brooklyn-style loft 1-bed in converted Art Deco exchange. Spiral stairs, exposed beams, frameless glass. All bills included. In the heart of Jesmond's social scene. Voted best residential development NE 2019.</div>
-        <a class="apt-link" href="https://www.exchangeresidential.com/properties/jesmond-exchange/" target="_blank">Official Site →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Jesmond</div>
-        <div class="apt-title">1-Bed, Akenside Terrace</div>
-        <div class="apt-addr">Akenside Terrace, Jesmond, NE2</div>
-        <div class="apt-price">~£1,200 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Top Floor</span><span class="apt-tag">Designer Interior</span><span class="apt-tag">Spacious</span></div>
-        <div class="apt-features">Large top-floor 1-bed on one of Jesmond's most sought-after streets. Interior designed to a high specification. Bright, spacious and very quiet. Minutes from Osborne Road cafés and Jesmond Dene.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Jesmond/1-bed-flats.html" target="_blank">Search on Rightmove →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Jesmond</div>
-        <div class="apt-title">1-Bed, Osborne Road — Available Now</div>
-        <div class="apt-addr">Osborne Road, South Jesmond, NE2</div>
-        <div class="apt-price">~£1,000–£1,100 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Available Now</span><span class="apt-tag">Heart of Jesmond</span></div>
-        <div class="apt-features">Beautifully presented 1-bedroom apartment on Osborne Road — Jesmond's main social strip. Walking distance to Jesmond Metro, boutique shops, cafés and restaurants. Perfect lifestyle location.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/South-Jesmond/1-bed-flats.html" target="_blank">Search on Rightmove →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Jesmond</div>
-        <div class="apt-title">1-Bed Duplex, Tankerville Place</div>
-        <div class="apt-addr">Tankerville Place, Jesmond, NE2</div>
-        <div class="apt-price">~£800 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Character Flat</span><span class="apt-tag">Walk to Haymarket</span><span class="apt-tag">Furnished</span></div>
-        <div class="apt-features">Character-filled duplex apartment on an exclusive Jesmond street. Walk to Haymarket Metro. Minutes from Clayton Road and Acorn Road. Ideal for a couple or parent/student duo at excellent value.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Jesmond/1-bed-flats.html" target="_blank">Search on Rightmove →</a>
-      </div>
-    </div>
-
-    <!-- Heaton -->
-    <div class="apt-group" id="tab-heaton">
-      <div class="apt-card">
-        <div class="apt-area-tag">Heaton</div>
-        <div class="apt-title">1-Bed Ground Floor, Heaton Park Road</div>
-        <div class="apt-addr">Heaton Park Road, Heaton, NE6</div>
-        <div class="apt-price">~£750–£900 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Furnished</span><span class="apt-tag">Near Park</span><span class="apt-tag">Bus Links</span></div>
-        <div class="apt-features">Comfortable 1-bed flat in popular Heaton next to Heaton Park. Furnished with all essentials. Great bus connections to Northumbria University. Quiet residential street, safe neighbourhood.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Heaton/1-bed-flats.html" target="_blank">Search on Rightmove →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Heaton</div>
-        <div class="apt-title">1-Bed Rialto Development</div>
-        <div class="apt-addr">Rialto Building, Heaton / City, NE6</div>
-        <div class="apt-price">~£900 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Modern Block</span><span class="apt-tag">Furnished</span><span class="apt-tag">Popular Build</span></div>
-        <div class="apt-features">Modern 1-bed in the popular Rialto development — well maintained building close to both universities and the city centre. Good commute to Northumbria, safe managed building with secure access.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Heaton.html" target="_blank">Search on Rightmove →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Heaton</div>
-        <div class="apt-title">1-Bed Flat, Chillingham Road Area</div>
-        <div class="apt-addr">Near Chillingham Road, Heaton, NE6</div>
-        <div class="apt-price">~£750–£850 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Best Value</span><span class="apt-tag">Lively Area</span><span class="apt-tag">Available Now</span></div>
-        <div class="apt-features">Best value 1-bedroom in Heaton. Walking distance to Chillingham Road's Sainsbury's, cafés, pubs and bus stops. Frequent buses direct to Northumbria University. Great community feel.</div>
-        <a class="apt-link" href="https://www.onthemarket.com/to-rent/flats-apartments/heaton/" target="_blank">Search on OnTheMarket →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">Heaton</div>
-        <div class="apt-title">1-Bed with Home Office, Heaton Grove</div>
-        <div class="apt-addr">Heaton Grove, Heaton, NE6</div>
-        <div class="apt-price">~£1,150 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed + Study</span><span class="apt-tag">Modern</span><span class="apt-tag">Available Now</span><span class="apt-tag">Large Rooms</span></div>
-        <div class="apt-features">Generous 1-bed with a dedicated study space — ideal as a second sleeping/working area. Large living room and kitchen. Modern, furnished throughout. Easy access to bus routes serving Northumbria University.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Heaton.html" target="_blank">Search on Rightmove →</a>
-      </div>
-    </div>
-
-    <!-- City Centre -->
-    <div class="apt-group" id="tab-citycentre">
-      <div class="apt-card">
-        <div class="apt-area-tag">City Centre</div>
-        <div class="apt-title">The Forge by Grainger — 1-Bed</div>
-        <div class="apt-addr">Forth Banks, Newcastle City Centre, NE1 3AA</div>
-        <div class="apt-price">from £1,100 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">24hr Lobby</span><span class="apt-tag">4.7★</span><span class="apt-tag">Professionals</span></div>
-        <div class="apt-features">Top-rated (4.7★) building with 24-hour staffed lobby — perfect for security. Gym, co-working space, parcel collection. Non-students and couples explicitly welcome. 10 min walk to Northumbria.</div>
-        <a class="apt-link" href="https://the-forge-newcastle.co.uk" target="_blank">the-forge-newcastle.co.uk →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">City Centre</div>
-        <div class="apt-title">City Co Living — 1-Bed Studio</div>
-        <div class="apt-addr">156 Pilgrim Street, Newcastle, NE1 6SU</div>
-        <div class="apt-price">from £975 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Luxury</span><span class="apt-tag">Staffed Reception</span><span class="apt-tag">Couples OK</span></div>
-        <div class="apt-features">Luxury city centre building explicitly welcoming couples and non-students. Staffed reception, modern amenities, very safe environment. Flexible stays from 1 month. Highly rated by residents.</div>
-        <a class="apt-link" href="https://mapartments.co.uk/newcastle/" target="_blank">mapartments.co.uk →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">City Centre</div>
-        <div class="apt-title">Falconars House — 1-Bed, Bills Included</div>
-        <div class="apt-addr">Falconars House, City Centre, NE1</div>
-        <div class="apt-price">~£850–£950 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Bills Included</span><span class="apt-tag">City Centre</span><span class="apt-tag">Managed</span></div>
-        <div class="apt-features">Fantastic 1-bedroom apartments in managed Falconars House with utility bills included. Ideally situated close to both universities and a wide range of city centre amenities. Great value all-inclusive.</div>
-        <a class="apt-link" href="https://www.primelocation.com/to-rent/flats/1-bedroom/newcastle-upon-tyne/" target="_blank">Search on PrimeLocation →</a>
-      </div>
-      <div class="apt-card">
-        <div class="apt-area-tag">City Centre</div>
-        <div class="apt-title">Corner Apartment, City Centre</div>
-        <div class="apt-addr">Newcastle City Centre, NE1</div>
-        <div class="apt-price">~£950 <span>/ month</span></div>
-        <div class="apt-tags"><span class="apt-tag">1 Bed</span><span class="apt-tag">Corner Apt</span><span class="apt-tag">Furnished</span><span class="apt-tag">Available Now</span></div>
-        <div class="apt-features">Attractive 1-bedroom corner apartment in the heart of Newcastle City Centre. Blends original period features with modern interiors. Walking distance to Quayside, shops, restaurants and all Metro stations.</div>
-        <a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Newcastle-City-Centre.html" target="_blank">Search on Rightmove →</a>
+<!-- OVERVIEW -->
+<div class="tab-panel active" id="panel-overview">
+  <div class="panel-hero" style="background:linear-gradient(135deg,#0d2b1f,#143d28)">
+    <div class="panel-hero-inner">
+      <div class="panel-label" style="color:#9FE1CB">Your Relocation Guide &middot; 2026</div>
+      <div class="panel-title" style="color:#fff">Finding Your Safe Home Near <span style="color:#5DCAA5">Northumbria</span></div>
+      <div class="panel-desc" style="color:rgba(255,255,255,.65)">You and your mum need a secure 1-bedroom apartment within walking distance of Northumbria&apos;s City Campus. Tap a neighbourhood below to see transport links, shops, safety info and the best apartments to rent.</div>
+      <div class="panel-stats">
+        <div class="pstat" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.12);color:#fff"><span class="pstat-dot" style="background:#1D9E75"></span>3 Safe Neighbourhoods</div>
+        <div class="pstat" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.12);color:#fff"><span class="pstat-dot" style="background:#FAC775"></span>5 Metro Stations Nearby</div>
+        <div class="pstat" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.12);color:#fff"><span class="pstat-dot" style="background:#5DCAA5"></span>1-Bed from ~&pound;820/month</div>
       </div>
     </div>
   </div>
-</section>
+  <div class="panel-body">
+    <div class="sdiv" style="margin-top:24px"><div class="sdiv-label">Tap a neighbourhood to explore</div></div>
+    <div class="overview-grid">
+      <button class="area-pill" onclick="switchTab('sandyford')">
+        <div class="pill-dot" style="background:#1D9E75"></div>
+        <div><div class="pill-name">Sandyford</div><div class="pill-sub">&#x1F3EB; ~8 min walk &middot; Closest safe area &middot; NE2</div></div>
+      </button>
+      <button class="area-pill" onclick="switchTab('jesmond')">
+        <div class="pill-dot" style="background:#1D9E75"></div>
+        <div><div class="pill-name">Jesmond</div><div class="pill-sub">&#x1F3EB; ~18 min walk &middot; Safest area &middot; NE2</div></div>
+      </button>
+      <button class="area-pill" onclick="switchTab('heaton')">
+        <div class="pill-dot" style="background:#1D9E75"></div>
+        <div><div class="pill-name">Heaton</div><div class="pill-sub">&#x1F3EB; ~20 min walk &middot; Best value &middot; NE6</div></div>
+      </button>
+      <button class="area-pill" onclick="switchTab('citycentre')">
+        <div class="pill-dot" style="background:#185FA5"></div>
+        <div><div class="pill-name">City Centre</div><div class="pill-sub">&#x1F3EB; ~10 min walk &middot; Most convenient &middot; NE1</div></div>
+      </button>
+    </div>
+    <div class="sdiv"><div class="sdiv-label">Areas to avoid</div></div>
+    <div class="avoid-grid">
+      <div class="avoid-card"><div class="avoid-name">&#x2715; Byker</div><div class="avoid-desc">316 crimes/1,000 people. Highest crime rate in Newcastle.</div></div>
+      <div class="avoid-card"><div class="avoid-name">&#x2715; Walker</div><div class="avoid-desc">High crime along the east River Tyne. Not safe for residents.</div></div>
+      <div class="avoid-card"><div class="avoid-name">&#x2715; Elswick</div><div class="avoid-desc">195 crimes/1,000. Western area with ongoing challenges.</div></div>
+      <div class="avoid-card"><div class="avoid-name">&#x2715; Scotswood</div><div class="avoid-desc">Avoid especially at night. Far west, high antisocial behaviour.</div></div>
+    </div>
+    <div class="sdiv"><div class="sdiv-label">Key tips for you &amp; your mum</div></div>
+    <div class="callout green"><strong>&#x1F4A1; Sharing a 1-bedroom apartment</strong>One person takes the bedroom, one uses a sofa bed in the living room &mdash; a common arrangement. Several buildings explicitly allow dual occupancy. Always call ahead to confirm two adults are welcome and ask about 4&ndash;8 month flexible leases.</div>
+    <div class="callout amber" style="margin-top:10px"><strong>&#x26A0;&#xFE0F; Security first</strong>Choose buildings with a staffed lobby or 24/7 CCTV. The Forge by Grainger (NE1 3AA) and Urban Study Jesmond (NE2 1QX) are both explicitly secure with concierge teams. Always view in person before signing any tenancy.</div>
+  </div>
+</div>
 
-<!-- ── SAFETY ── -->
-<section class="safety-section">
-  <div class="container">
-    <div class="section-label">Safety Guide</div>
-    <h2 class="section-title">Where to Go & Where to Avoid</h2>
-    <p class="section-sub">Based on official ONS crime data and local knowledge. Stick to the green areas for a safe, comfortable experience.</p>
-    <div class="safety-grid">
-      <div class="safety-card safe">
-        <h3>✓ Recommended Areas</h3>
-        <ul>
-          <li>Sandyford — quietest, closest to Northumbria</li>
-          <li>Jesmond — safest overall (65 crimes/1,000)</li>
-          <li>Heaton — affordable, lively and safe</li>
-          <li>City Centre — fine in a secured building</li>
-          <li>Gosforth — safest suburb (Metro away)</li>
-          <li>Quayside — vibrant riverside, well-policed</li>
-        </ul>
-      </div>
-      <div class="safety-card avoid">
-        <h3>✕ Areas to Avoid</h3>
-        <ul>
-          <li>Byker — 316 crimes per 1,000 people</li>
-          <li>Walker — high crime along the east Tyne</li>
-          <li>Elswick — 195 crimes per 1,000 people</li>
-          <li>Scotswood — avoid, especially at night</li>
-          <li>Wingrove — 226 crimes per 1,000 people</li>
-          <li>City Centre Bigg Market area late at night</li>
-        </ul>
+<!-- SANDYFORD -->
+<div class="tab-panel" id="panel-sandyford">
+  <div class="panel-hero" style="background:linear-gradient(135deg,#0a3322,#1D9E75 280%)">
+    <div class="panel-hero-inner">
+      <div class="panel-label" style="color:#9FE1CB">Safe Area &middot; NE2 Postcode</div>
+      <div class="panel-title" style="color:#fff">Sandyford</div>
+      <div class="panel-desc" style="color:rgba(255,255,255,.72)">The closest safe neighbourhood to Northumbria&apos;s City Campus. Quiet, residential and leafy &mdash; popular with students and professionals. Directly between the city centre and Jesmond.</div>
+      <div class="panel-stats">
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#5DCAA5"></span>~8 min walk to uni</div>
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#FAC775"></span>Low crime rate</div>
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#fff"></span>from ~&pound;820/month</div>
       </div>
     </div>
   </div>
-</section>
+  <div class="panel-body">
+    <div class="panel-grid" style="margin-top:24px">
+      <div class="info-card">
+        <div class="info-card-head"><div class="info-card-icon" style="background:#FAEEDA">&#x1F687;</div><div class="info-card-title">Transport Links</div></div>
+        <div class="info-card-body">
+          <table class="t-table"><thead><tr><th>Station</th><th>Type</th><th>Walk</th></tr></thead><tbody>
+            <tr><td>Haymarket</td><td><span class="t-badge badge-metro">Metro</span></td><td class="t-walk">~5 min</td></tr>
+            <tr><td>Eldon Square</td><td><span class="t-badge badge-bus">Bus</span></td><td class="t-walk">~6 min</td></tr>
+            <tr><td>Monument</td><td><span class="t-badge badge-metro">Metro</span></td><td class="t-walk">~10 min</td></tr>
+            <tr><td>Central Station</td><td><span class="t-badge badge-train">Train</span></td><td class="t-walk">~15 min</td></tr>
+          </tbody></table>
+          <div class="callout green" style="margin-top:10px;padding:10px 12px">Bus stop directly outside Urban Study Jesmond on Sandyford Road. Frequent services to city centre and university all day.</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-head"><div class="info-card-icon" style="background:#E1F5EE">&#x1F6CD;</div><div class="info-card-title">Shops &amp; Amenities</div></div>
+        <div class="info-card-body"><ul class="info-list">
+          <li>Sandyford Road &mdash; caf&eacute;s, corner shops, takeaways on your doorstep</li>
+          <li>Acorn Road, Jesmond (5 min) &mdash; boutique shops, bakeries, wine bars</li>
+          <li>Brentwood Avenue (8 min) &mdash; Sainsbury&apos;s, pharmacy, essentials</li>
+          <li>Eldon Square (12 min) &mdash; major retail, M&amp;S, Primark, restaurants</li>
+          <li>Grainger Market (14 min) &mdash; fresh produce, historic indoor market</li>
+          <li>Jesmond Dene park (8 min) &mdash; beautiful riverside walks</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="sdiv"><div class="sdiv-label">Safety</div></div>
+    <div class="panel-grid">
+      <div class="callout green"><strong>&#x2713; Why it&apos;s safe</strong>Low crime, primarily residential streets. Well-lit at night. Active student and professional community. Very close to university so well-patrolled. No major antisocial behaviour issues reported.</div>
+      <div class="callout amber"><strong>&#x26A0;&#xFE0F; Things to note</strong>Can get busier near Sandyford Road caf&eacute;s on weekends. Stick to well-lit routes at night. As with any city area, be aware of surroundings after midnight.</div>
+    </div>
+    <div class="sdiv"><div class="sdiv-label">Best 1-Bed Apartments in Sandyford</div></div>
+    <div class="apt-cards">
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">Urban Study Jesmond &mdash; 1-Bed Studio</div><div class="apt-price">~&pound;820&ndash;890/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Grantham Road, Shieldfield, NE2 1QX</div>
+        <div class="apt-tags"><span class="apt-tag">Bills Included</span><span class="apt-tag">24/7 CCTV</span><span class="apt-tag">Couples OK</span><span class="apt-tag">Gym &amp; Cinema</span><span class="apt-tag">Concierge</span></div>
+        <div class="apt-desc">High-spec building just 5 minutes&apos; walk to Northumbria. All utilities and broadband included. Secure carded entry, 24/7 CCTV, daytime concierge. On-site gym, cinema, private dining. Bus stop directly outside. Explicitly suitable for couples.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.rightmove.co.uk/properties/163283486" target="_blank">Rightmove &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Grantham+Road+Shieldfield+Newcastle+NE2+1QX" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">Portland Apartments &mdash; 1-Bed En-Suite</div><div class="apt-price">~&pound;895&ndash;1,100/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Portland Terrace, Sandyford, NE2 1QX</div>
+        <div class="apt-tags"><span class="apt-tag">New Build</span><span class="apt-tag">En-Suite</span><span class="apt-tag">Fully Furnished</span><span class="apt-tag">Secure Entry</span></div>
+        <div class="apt-desc">Brand new high-spec 1-bed en-suite. The closest new development to Northumbria&apos;s City Campus &mdash; just 8 minutes on foot. Modern interiors, secure entry, quiet street.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.primelocation.com/to-rent/property/tyne-and-wear/sandyford/" target="_blank">PrimeLocation &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Portland+Terrace+Sandyford+Newcastle+NE2" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">1-Bed with Private Garden, Hutton Terrace</div><div class="apt-price">~&pound;895/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Hutton Terrace, Sandyford, NE2</div>
+        <div class="apt-tags"><span class="apt-tag">Private Garden</span><span class="apt-tag">Gated Parking</span><span class="apt-tag">Modern</span><span class="apt-tag">Quiet Street</span></div>
+        <div class="apt-desc">Modern 1-bed on one of Sandyford&apos;s most desirable streets. Rare private garden and gated parking. 8 min to Northumbria, 5 min to Jesmond Dene. Perfect for a relaxed lifestyle.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Sandyford.html" target="_blank">Rightmove &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Hutton+Terrace+Sandyford+Newcastle+NE2" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">Refurbished 1-Bed, Sandyford Road</div><div class="apt-price">~&pound;650&ndash;800/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Sandyford Road / Lillico House, NE2</div>
+        <div class="apt-tags"><span class="apt-tag">Best Value</span><span class="apt-tag">Available Now</span><span class="apt-tag">Refurbished</span><span class="apt-tag">Great Transport</span></div>
+        <div class="apt-desc">Most affordable 1-bed in Sandyford. Newly refurbished, walking distance to Northumbria and Newcastle universities and the city centre. Excellent transport links.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.onthemarket.com/to-rent/flats-apartments/sandyford/" target="_blank">OnTheMarket &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Sandyford+Road+Newcastle+NE2" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- ── FOOTER ── -->
+<!-- JESMOND -->
+<div class="tab-panel" id="panel-jesmond">
+  <div class="panel-hero" style="background:linear-gradient(135deg,#0a2218,#0F6E56 260%)">
+    <div class="panel-hero-inner">
+      <div class="panel-label" style="color:#9FE1CB">Safest Area &middot; NE2 Postcode</div>
+      <div class="panel-title" style="color:#fff">Jesmond</div>
+      <div class="panel-desc" style="color:rgba(255,255,255,.72)">Newcastle&apos;s most prestigious and consistently safest neighbourhood. Tree-lined Victorian streets, fantastic independent restaurants and boutiques. Lowest crime rate in the city &mdash; just 65 crimes per 1,000 people.</div>
+      <div class="panel-stats">
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#5DCAA5"></span>~18 min walk to uni</div>
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#FAC775"></span>65 crimes/1,000 (very low)</div>
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#fff"></span>from ~&pound;800/month</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="panel-grid" style="margin-top:24px">
+      <div class="info-card">
+        <div class="info-card-head"><div class="info-card-icon" style="background:#FAEEDA">&#x1F687;</div><div class="info-card-title">Transport Links</div></div>
+        <div class="info-card-body">
+          <table class="t-table"><thead><tr><th>Station</th><th>Type</th><th>Walk</th></tr></thead><tbody>
+            <tr><td>Haymarket</td><td><span class="t-badge badge-metro">Metro</span></td><td class="t-walk">~10 min</td></tr>
+            <tr><td>West Jesmond</td><td><span class="t-badge badge-metro">Metro</span></td><td class="t-walk">~12 min</td></tr>
+            <tr><td>Jesmond Metro</td><td><span class="t-badge badge-metro">Metro</span></td><td class="t-walk">~14 min</td></tr>
+            <tr><td>Eldon Square</td><td><span class="t-badge badge-bus">Bus</span></td><td class="t-walk">~18 min</td></tr>
+          </tbody></table>
+          <div class="callout green" style="margin-top:10px;padding:10px 12px">Regular buses run directly from Jesmond to Northumbria University. Metro connects to airport, coast and all city lines.</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-head"><div class="info-card-icon" style="background:#E1F5EE">&#x1F6CD;</div><div class="info-card-title">Shops &amp; Amenities</div></div>
+        <div class="info-card-body"><ul class="info-list">
+          <li>Acorn Road &mdash; boutique shops, bakeries, wine bars, independent eateries</li>
+          <li>Osborne Road &mdash; vibrant bar &amp; restaurant strip, great nightlife</li>
+          <li>Brentwood Avenue &mdash; Sainsbury&apos;s, pharmacy, everyday essentials</li>
+          <li>Jesmond Dene &mdash; stunning riverside park right on your doorstep</li>
+          <li>Multiple independent caf&eacute;s perfect for studying or relaxing</li>
+          <li>City Centre retail (Eldon Square) 15&ndash;18 min walk away</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="sdiv"><div class="sdiv-label">Safety</div></div>
+    <div class="panel-grid">
+      <div class="callout green"><strong>&#x2713; Why it&apos;s safe</strong>Lowest crime rate in Newcastle &mdash; just 65 crimes per 1,000 people. Leafy, well-maintained streets with a strong community. Popular with families and professionals, not just students.</div>
+      <div class="callout green"><strong>&#x2713; Night safety</strong>Osborne Road has nightlife but it&apos;s well managed. Residential streets are quiet and safe at night. Metro runs late on weekends giving you a reliable route home.</div>
+    </div>
+    <div class="sdiv"><div class="sdiv-label">Best 1-Bed Apartments in Jesmond</div></div>
+    <div class="apt-cards">
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">Jesmond Exchange &mdash; Loft 1-Bed</div><div class="apt-price">~&pound;1,168&ndash;1,345/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Manor Court, South Jesmond, NE2 3AE</div>
+        <div class="apt-tags"><span class="apt-tag">Bills Included</span><span class="apt-tag">Award-Winning</span><span class="apt-tag">Loft Style</span><span class="apt-tag">Industrial Chic</span></div>
+        <div class="apt-desc">Brooklyn-style loft 1-bed in a converted Art Deco telephone exchange. Spiral staircases, exposed beams, frameless glass mezzanines. Voted Residential Project of the Year 2019. All bills included.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.exchangeresidential.com/properties/jesmond-exchange/" target="_blank">Official site &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Jesmond+Exchange+Manor+Court+Newcastle+NE2+3AE" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">1-Bed, Akenside Terrace</div><div class="apt-price">~&pound;1,200/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Akenside Terrace, Jesmond, NE2</div>
+        <div class="apt-tags"><span class="apt-tag">Top Floor</span><span class="apt-tag">Designer Interior</span><span class="apt-tag">Spacious</span><span class="apt-tag">Quiet Street</span></div>
+        <div class="apt-desc">Large top-floor 1-bed on one of Jesmond&apos;s most sought-after streets. Interior designed to high spec. Bright and spacious. Minutes from Osborne Road caf&eacute;s and Jesmond Dene.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Jesmond/1-bed-flats.html" target="_blank">Rightmove &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Akenside+Terrace+Jesmond+Newcastle+NE2" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">1-Bed on Osborne Road &mdash; Available Now</div><div class="apt-price">~&pound;1,000&ndash;1,100/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Osborne Road, South Jesmond, NE2</div>
+        <div class="apt-tags"><span class="apt-tag">Available Now</span><span class="apt-tag">Heart of Jesmond</span><span class="apt-tag">Near Metro</span></div>
+        <div class="apt-desc">Beautifully presented 1-bed on Jesmond&apos;s main social strip. Walking distance to Jesmond Metro, boutique shops, caf&eacute;s and restaurants. Perfect lifestyle location for two adults.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/South-Jesmond/1-bed-flats.html" target="_blank">Rightmove &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Osborne+Road+Jesmond+Newcastle+NE2" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">1-Bed Duplex, Tankerville Place</div><div class="apt-price">~&pound;800/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Tankerville Place, Jesmond, NE2</div>
+        <div class="apt-tags"><span class="apt-tag">Best Value</span><span class="apt-tag">Character Flat</span><span class="apt-tag">Near Haymarket</span><span class="apt-tag">Furnished</span></div>
+        <div class="apt-desc">Character-filled duplex on an exclusive Jesmond street at excellent value. Walk to Haymarket Metro. Minutes from Clayton Road and Acorn Road. Ideal for a mother and adult child.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Jesmond/1-bed-flats.html" target="_blank">Rightmove &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Tankerville+Place+Jesmond+Newcastle+NE2" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEATON -->
+<div class="tab-panel" id="panel-heaton">
+  <div class="panel-hero" style="background:linear-gradient(135deg,#162608,#3B6D11 260%)">
+    <div class="panel-hero-inner">
+      <div class="panel-label" style="color:#C0DD97">Best Value Safe Area &middot; NE6 Postcode</div>
+      <div class="panel-title" style="color:#fff">Heaton</div>
+      <div class="panel-desc" style="color:rgba(255,255,255,.72)">Vibrant, community-oriented neighbourhood with a lively caf&eacute; culture. Chillingham Road is the social hub &mdash; packed with independent bars, caf&eacute;s and shops. Popular with young professionals and safe for families.</div>
+      <div class="panel-stats">
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#97C459"></span>~20 min walk to uni</div>
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#FAC775"></span>Low crime &middot; safe streets</div>
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#fff"></span>from ~&pound;750/month</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="panel-grid" style="margin-top:24px">
+      <div class="info-card">
+        <div class="info-card-head"><div class="info-card-icon" style="background:#FAEEDA">&#x1F687;</div><div class="info-card-title">Transport Links</div></div>
+        <div class="info-card-body">
+          <table class="t-table"><thead><tr><th>Station</th><th>Type</th><th>Walk</th></tr></thead><tbody>
+            <tr><td>Chillingham Rd buses</td><td><span class="t-badge badge-bus">Bus</span></td><td class="t-walk">2 min</td></tr>
+            <tr><td>Byker Metro</td><td><span class="t-badge badge-metro">Metro</span></td><td class="t-walk">~15 min</td></tr>
+            <tr><td>Manors Metro</td><td><span class="t-badge badge-metro">Metro</span></td><td class="t-walk">~22 min</td></tr>
+            <tr><td>Central Station</td><td><span class="t-badge badge-train">Train</span></td><td class="t-walk">~25 min</td></tr>
+          </tbody></table>
+          <div class="callout green" style="margin-top:10px;padding:10px 12px">Buses on Chillingham Road run frequently to Northumbria University and the city centre throughout the day and evening.</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-head"><div class="info-card-icon" style="background:#EAF3DE">&#x1F6CD;</div><div class="info-card-title">Shops &amp; Amenities</div></div>
+        <div class="info-card-body"><ul class="info-list">
+          <li>Chillingham Road &mdash; Sainsbury&apos;s, independent caf&eacute;s, pubs, takeaways</li>
+          <li>Heaton Park &mdash; large, beautiful green space for daily walks</li>
+          <li>Heaton Road &mdash; local shops, hairdressers, strong community feel</li>
+          <li>City Centre (Eldon Square) 20&ndash;25 min walk or quick bus</li>
+          <li>Byker area has a local Co-op and convenience stores nearby</li>
+          <li>Very friendly, inclusive neighbourhood with active local scene</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="sdiv"><div class="sdiv-label">Safety</div></div>
+    <div class="panel-grid">
+      <div class="callout green"><strong>&#x2713; Why it&apos;s safe</strong>Consistently rated as a safe, low-crime residential neighbourhood. Strong community ties. Very popular with young families and professionals. Well-lit streets, active local presence.</div>
+      <div class="callout amber"><strong>&#x26A0;&#xFE0F; Things to note</strong>Heaton borders Byker to the east &mdash; stick to Heaton Road and Chillingham Road as your main routes. Avoid cutting through Byker. Nightlife can be lively near Chillingham Road on weekends.</div>
+    </div>
+    <div class="sdiv"><div class="sdiv-label">Best 1-Bed Apartments in Heaton</div></div>
+    <div class="apt-cards">
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">1-Bed Ground Floor, Heaton Park Road</div><div class="apt-price">~&pound;750&ndash;900/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Heaton Park Road, Heaton, NE6</div>
+        <div class="apt-tags"><span class="apt-tag">Furnished</span><span class="apt-tag">Near Park</span><span class="apt-tag">Bus Links</span><span class="apt-tag">Quiet Street</span></div>
+        <div class="apt-desc">Comfortable 1-bed next to Heaton Park. Furnished with all essentials. Great bus connections to Northumbria University from Chillingham Road. Quiet, safe residential street.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Heaton/1-bed-flats.html" target="_blank">Rightmove &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Heaton+Park+Road+Newcastle+NE6" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">1-Bed, Rialto Development</div><div class="apt-price">~&pound;900/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Rialto Building, Heaton, NE6</div>
+        <div class="apt-tags"><span class="apt-tag">Modern Block</span><span class="apt-tag">Furnished</span><span class="apt-tag">Managed Building</span><span class="apt-tag">Secure Access</span></div>
+        <div class="apt-desc">Modern 1-bed in the popular Rialto development. Well-maintained, close to both universities and city centre. Secure managed access &mdash; good security for two adults living alone.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Heaton.html" target="_blank">Rightmove &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Rialto+Building+Heaton+Newcastle+NE6" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">1-Bed Near Chillingham Road</div><div class="apt-price">~&pound;750&ndash;850/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Chillingham Road area, Heaton, NE6</div>
+        <div class="apt-tags"><span class="apt-tag">Best Value</span><span class="apt-tag">Lively Area</span><span class="apt-tag">Available Now</span><span class="apt-tag">Bus at Door</span></div>
+        <div class="apt-desc">Best value 1-bed in Heaton. Walking distance to Sainsbury&apos;s, caf&eacute;s, pubs and bus stops. Frequent direct buses to Northumbria University. Great community atmosphere.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.onthemarket.com/to-rent/flats-apartments/heaton/" target="_blank">OnTheMarket &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Chillingham+Road+Heaton+Newcastle+NE6" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">1-Bed + Study, Heaton Grove</div><div class="apt-price">~&pound;1,150/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Heaton Grove, Heaton, NE6</div>
+        <div class="apt-tags"><span class="apt-tag">1 Bed + Study</span><span class="apt-tag">Large Rooms</span><span class="apt-tag">Modern</span><span class="apt-tag">Available Now</span></div>
+        <div class="apt-desc">Generous 1-bed with a dedicated study space &mdash; ideal as a second sleeping or working area for two people. Large living room and kitchen. Easy bus access to Northumbria University.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.rightmove.co.uk/property-to-rent/Heaton.html" target="_blank">Rightmove &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Heaton+Grove+Newcastle+NE6" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CITY CENTRE -->
+<div class="tab-panel" id="panel-citycentre">
+  <div class="panel-hero" style="background:linear-gradient(135deg,#071b36,#185FA5 260%)">
+    <div class="panel-hero-inner">
+      <div class="panel-label" style="color:#B5D4F4">Most Convenient &middot; NE1 Postcode</div>
+      <div class="panel-title" style="color:#fff">City Centre</div>
+      <div class="panel-desc" style="color:rgba(255,255,255,.72)">Living in a secure, professionally managed building puts you at the heart of everything. Well-policed and convenient. The key is choosing a building with 24-hour lobby security &mdash; there are excellent options.</div>
+      <div class="panel-stats">
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#5DCAA5"></span>~10 min walk to uni</div>
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#FAC775"></span>4 Metro stations nearby</div>
+        <div class="pstat" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff"><span class="pstat-dot" style="background:#fff"></span>from ~&pound;975/month</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="panel-grid" style="margin-top:24px">
+      <div class="info-card">
+        <div class="info-card-head"><div class="info-card-icon" style="background:#FAEEDA">&#x1F687;</div><div class="info-card-title">Transport Links</div></div>
+        <div class="info-card-body">
+          <table class="t-table"><thead><tr><th>Station</th><th>Type</th><th>Walk</th></tr></thead><tbody>
+            <tr><td>Haymarket</td><td><span class="t-badge badge-metro">Metro</span></td><td class="t-walk">~5 min</td></tr>
+            <tr><td>Eldon Square</td><td><span class="t-badge badge-bus">Bus</span></td><td class="t-walk">~6 min</td></tr>
+            <tr><td>Monument</td><td><span class="t-badge badge-metro">Metro</span></td><td class="t-walk">~8 min</td></tr>
+            <tr><td>St James</td><td><span class="t-badge badge-metro">Metro</span></td><td class="t-walk">~10 min</td></tr>
+            <tr><td>Central Station</td><td><span class="t-badge badge-train">Train</span></td><td class="t-walk">~12 min</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-head"><div class="info-card-icon" style="background:#E6F1FB">&#x1F6CD;</div><div class="info-card-title">Shops &amp; Amenities</div></div>
+        <div class="info-card-body"><ul class="info-list">
+          <li>Eldon Square &mdash; one of the UK&apos;s largest indoor shopping centres</li>
+          <li>Northumberland Street &mdash; M&amp;S, Primark, John Lewis, all major retail</li>
+          <li>Grainger Market &mdash; historic indoor market with fresh produce daily</li>
+          <li>Bigg Market / Quayside &mdash; dozens of restaurants and bars</li>
+          <li>Multiple gyms, supermarkets, cinemas and cultural venues</li>
+          <li>Everything within 10&ndash;15 minutes on foot</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="sdiv"><div class="sdiv-label">Safety</div></div>
+    <div class="panel-grid">
+      <div class="callout green"><strong>&#x2713; Why it works</strong>Well-policed and fine for living in. Choose a managed building with a staffed lobby (like The Forge or City Co Living) and you&apos;ll feel very secure. 24/7 CCTV is standard in these buildings.</div>
+      <div class="callout amber"><strong>&#x26A0;&#xFE0F; Night note</strong>Bigg Market and Grey Street get very busy Friday&ndash;Saturday nights. Stick to your building&apos;s secure entrance. The Quayside and areas around Northumbria are calm and safe.</div>
+    </div>
+    <div class="sdiv"><div class="sdiv-label">Best 1-Bed Apartments in City Centre</div></div>
+    <div class="apt-cards">
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">The Forge by Grainger &mdash; 1-Bed</div><div class="apt-price">from &pound;1,100/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Forth Banks, Newcastle City Centre, NE1 3AA</div>
+        <div class="apt-tags"><span class="apt-tag">24hr Staffed Lobby</span><span class="apt-tag">4.7&#x2605; Rated</span><span class="apt-tag">Gym</span><span class="apt-tag">Co-Working</span><span class="apt-tag">Professionals</span></div>
+        <div class="apt-desc">Highest-rated building near Northumbria (4.7&#x2605;, 175+ reviews). 24-hour staffed lobby &mdash; ideal security for you and your mum. On-site gym, co-working space, parcel collection. Professionals and couples explicitly welcome.</div>
+        <div class="apt-links"><a class="apt-link" href="https://the-forge-newcastle.co.uk" target="_blank">Official site &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/The+Forge+Forth+Banks+Newcastle+NE1+3AA" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">City Co Living &mdash; 1-Bed Studio</div><div class="apt-price">from &pound;975/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; 156 Pilgrim Street, Newcastle, NE1 6SU</div>
+        <div class="apt-tags"><span class="apt-tag">Luxury</span><span class="apt-tag">Staffed Reception</span><span class="apt-tag">Couples OK</span><span class="apt-tag">Flexible Lease</span></div>
+        <div class="apt-desc">Luxury city centre building explicitly welcoming couples and non-students. Staffed reception, modern amenities, very safe. Flexible stays from 1 month. Residents call it very comfortable and home-like.</div>
+        <div class="apt-links"><a class="apt-link" href="https://mapartments.co.uk/newcastle/" target="_blank">Official site &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/156+Pilgrim+Street+Newcastle+NE1+6SU" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">Falconars House &mdash; 1-Bed, Bills Included</div><div class="apt-price">~&pound;850&ndash;950/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Falconars House, City Centre, NE1</div>
+        <div class="apt-tags"><span class="apt-tag">Bills Included</span><span class="apt-tag">Managed Building</span><span class="apt-tag">Near Both Unis</span><span class="apt-tag">Great Value</span></div>
+        <div class="apt-desc">Managed 1-bed apartments with utility bills included. Close to both Northumbria and Newcastle universities. Great all-inclusive value option right in the city centre.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.primelocation.com/to-rent/flats/1-bedroom/newcastle-upon-tyne/" target="_blank">PrimeLocation &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Falconars+House+Newcastle+City+Centre+NE1" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-card-top"><div class="apt-name">PREMIER SUITES &mdash; 1-Bed Serviced</div><div class="apt-price">from &pound;1,200/mo</div></div>
+        <div class="apt-addr">&#x1F4CD; Thornton House, Thornton Street, NE1 4AT</div>
+        <div class="apt-tags"><span class="apt-tag">Serviced</span><span class="apt-tag">Flexible 4&ndash;8 months</span><span class="apt-tag">Family Friendly</span><span class="apt-tag">Parking</span></div>
+        <div class="apt-desc">Serviced apartments perfect for two adults. Spacious, fully furnished, with underground parking. Staffed reception and flexible 4&ndash;8 month stays. 4.5&#x2605; rated. Praised as great for families.</div>
+        <div class="apt-links"><a class="apt-link" href="https://www.premiersuiteseurope.com/en/locations/united-kingdom/newcastle/serviced-apartments-newcastle" target="_blank">Official site &#x2192;</a><a class="apt-link map-link" href="https://www.google.com/maps/search/Thornton+House+Thornton+Street+Newcastle+NE1+4AT" target="_blank">&#x1F4CD; Map</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
-  <p>Information compiled from Rightmove, Zoopla, PrimeLocation, ONS Crime Data and local knowledge · April 2026</p>
-  <p style="margin-top:8px">Search listings: <a href="https://www.rightmove.co.uk" target="_blank">Rightmove</a> · <a href="https://www.zoopla.co.uk" target="_blank">Zoopla</a> · <a href="https://www.primelocation.com" target="_blank">PrimeLocation</a> · <a href="https://www.onthemarket.com" target="_blank">OnTheMarket</a></p>
+  <p>Data from Rightmove, Zoopla, PrimeLocation, ONS Crime Statistics &middot; April 2026</p>
+  <p style="margin-top:6px">Search listings: <a href="https://www.rightmove.co.uk" target="_blank">Rightmove</a> &middot; <a href="https://www.zoopla.co.uk" target="_blank">Zoopla</a> &middot; <a href="https://www.primelocation.com" target="_blank">PrimeLocation</a> &middot; <a href="https://www.onthemarket.com" target="_blank">OnTheMarket</a></p>
 </footer>
 
 <script>
-  function showTab(area) {
-    document.querySelectorAll('.apt-group').forEach(g => g.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + area).classList.add('active');
-    event.target.classList.add('active');
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  const btn = [...document.querySelectorAll('.nav-tab')].find(b => b.getAttribute('onclick') === "switchTab('" + id + "')");
+  if (btn) {
+    btn.classList.add('active');
+    btn.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
   }
+  const wrap = document.querySelector('.nav-tabs-wrap');
+  if (wrap) window.scrollTo({top: wrap.getBoundingClientRect().top + window.scrollY - 52, behavior:'smooth'});
+}
 </script>
 </body>
 </html>
